@@ -7,13 +7,15 @@ import {
   Text,
   Image,
   Button,
-  TouchableOpacity
+  TouchableOpacity,
 } from "react-native";
-
+import { useNavigation } from "@react-navigation/native";
 import AppIntroSlider from "react-native-app-intro-slider";
+import LoginScreen from "../screens/LoginScreen";
 
 const Introslider = () => {
   const [showRealApp, setShowRealApp] = useState(false);
+  const navigation = useNavigation();
 
   const onDone = () => {
     setShowRealApp(true);
@@ -43,21 +45,7 @@ const Introslider = () => {
   return (
     <>
       {showRealApp ? (
-        <SafeAreaView style={styles.container}>
-          <View style={styles.container}>
-            <Text style={styles.titleStyle}>
-              React Native App Intro Slider using AppIntroSlider
-            </Text>
-            <Text style={styles.paragraphStyle}>
-              This will be your screen when you click Skip from any slide or
-              Done button at last
-            </Text>
-            <Button
-              title="Show Intro Slider again"
-              onPress={() => setShowRealApp(false)}
-            />
-          </View>
-        </SafeAreaView>
+        <LoginScreen />
       ) : (
         <>
           <AppIntroSlider
@@ -68,16 +56,23 @@ const Introslider = () => {
             onSkip={onSkip}
           />
           <View style={styles.mainScreenShow}>
-          <View style={styles.mainScreenShow2} >
-            <TouchableOpacity style={styles.button1}>
-            <Text style={{textAlign:"center",color:"white"}}>Sign In</Text>
-            </TouchableOpacity>
-            <View style={{padding:5}} ></View>
-            <TouchableOpacity style={styles.button2}>
-            <Text style={{textAlign:"center"}}>Sign Up</Text>
-            </TouchableOpacity>
-
-          </View>
+            <View style={styles.mainScreenShow2}>
+              <TouchableOpacity
+                onPress={() => navigation.replace("Login")}
+                style={styles.button1}
+              >
+                <Text style={{ textAlign: "center", color: "white" }}>
+                  Sign In
+                </Text>
+              </TouchableOpacity>
+              <View style={{ padding: 5 }}></View>
+              <TouchableOpacity
+                onPress={() => navigation.replace("Signup")}
+                style={styles.button2}
+              >
+                <Text style={{ textAlign: "center" }}>Sign Up</Text>
+              </TouchableOpacity>
+            </View>
           </View>
         </>
       )}
@@ -92,21 +87,21 @@ const styles = StyleSheet.create({
     padding: 15,
     borderColor: "white",
     borderWidth: 2,
-    borderRadius:10,
+    borderRadius: 10,
     // margin:10,
-    width:"50%",
-    textAlign:"center",
-    color:"white"
+    width: "50%",
+    textAlign: "center",
+    color: "white",
   },
   button2: {
     padding: 15,
     borderColor: "#05DCFF",
     borderWidth: 2,
-    borderRadius:10,
-    backgroundColor:'#05DCFF',
+    borderRadius: 10,
+    backgroundColor: "#05DCFF",
     // margin:10,
-    width:"50%",
-    textAlign:"center"
+    width: "50%",
+    textAlign: "center",
   },
   container: {
     flex: 1,
@@ -127,15 +122,16 @@ const styles = StyleSheet.create({
     fontSize: 16,
   },
   introImageStyle: {
-    marginTop:50,
-    width: 200,
-    height: 200,
+    marginTop: 50,
+    width: 300,
+    height: 300,
   },
   introTextStyle: {
     fontSize: 18,
     color: "white",
     textAlign: "center",
     paddingVertical: 30,
+    fontWeight:"bold"
   },
   introTitleStyle: {
     fontSize: 25,
@@ -147,10 +143,9 @@ const styles = StyleSheet.create({
   mainScreenShow: {
     padding: 20,
     backgroundColor: "#1E1D1D",
-    justifyContent:"center",
+    justifyContent: "center",
     // borderTopLeftRadius:30,
     // borderTopRightRadius:30
-    
   },
   mainScreenShow2: {
     // padding: 40,
@@ -167,27 +162,23 @@ const slides = [
     key: "s1",
     text: "Walk To Get Rewards",
     title: "Walk To Get Rewards",
-    image: { 
-      uri: "https://raw.githubusercontent.com/AboutReact/sampleresource/master/intro_mobile_recharge.png",
-    },
+    image: require("../assets/img/Banknot.png"),
     backgroundColor: "#000000",
   },
   {
     key: "s2",
     title: "Walk For Your Health",
     text: "Walk For Your Health",
-    image: {
-      uri: "https://raw.githubusercontent.com/AboutReact/sampleresource/master/intro_flight_ticket_booking.png",
-    },
+    image: require("../assets/img/Coolness.png"),
+
     backgroundColor: "#000000",
   },
   {
     key: "s3",
     title: "Walk To Earn Rewards",
     text: "Walk To Earn Rewards",
-    image: {
-      uri: "https://raw.githubusercontent.com/AboutReact/sampleresource/master/intro_discount.png",
-    },
+    image: require("../assets/img/Walking.png"),
+
     backgroundColor: "#000000",
   },
 ];
