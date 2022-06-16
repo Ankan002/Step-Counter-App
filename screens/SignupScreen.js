@@ -46,7 +46,7 @@ const SignupScreen = () => {
         />
 
         <View style={{ marginHorizontal: 40, marginTop: 20 }}>
-          <TouchableOpacity>
+          <TouchableOpacity onPress={()=>navigation.navigate("ActivateAccount")}>
             <Text
               style={{
                 color: "white",

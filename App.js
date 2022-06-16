@@ -4,13 +4,16 @@ import React from "react";
 import Introslider from "./components/Introslider";
 import { NavigationContainer } from '@react-navigation/native';
 import StackNavigator from './navigation/StackNavigation';
+import { NativeBaseProvider, Box } from "native-base";
 
 
 const App = () => {
   return (
     <>
     <NavigationContainer>
+    <NativeBaseProvider>
       <StackNavigator/>
+    </NativeBaseProvider>
     </NavigationContainer>
       {/* <Introslider /> */}
     </>
