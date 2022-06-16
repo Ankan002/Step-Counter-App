@@ -8,7 +8,7 @@ const BackPress = (props) => {
   return (
     <View style={{ flexDirection: "row", marginTop: 35, marginHorizontal: 15 }}>
     
-      <Ionicons
+      {/* <Ionicons
         name="chevron-back"
         style={{ flex: 1, color: "white" }}
         size={24}
@@ -16,7 +16,8 @@ const BackPress = (props) => {
         onPress={() => {
         navigation.goBack();
       }}
-      />
+      /> */}
+      <View style={{ flex: 1, color: "white" }}></View>
       <Text
         style={{
           flex: 2,
