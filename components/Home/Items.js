@@ -6,6 +6,8 @@ import Ionicons from "react-native-vector-icons/Ionicons";
 
 const Items = () => {
   return (
+    <>
+      
     <View style={{ marginHorizontal: 30, marginTop: 30, flexDirection: "row" }}>
       <View
         style={{
@@ -35,7 +37,12 @@ const Items = () => {
           borderRadius: 10,
         }}
       >
-        <FontAwesome5  style={{ backgroundColor: "#252525", padding: 5, borderRadius: 20 }} name="walking" size={18} color="white" />
+        <FontAwesome5
+          style={{ backgroundColor: "#252525", padding: 5, borderRadius: 20 }}
+          name="walking"
+          size={18}
+          color="white"
+        />
         <Text style={{ color: "white" }}>0.00</Text>
       </View>
       <View
@@ -48,10 +55,16 @@ const Items = () => {
           borderRadius: 10,
         }}
       >
-        <Ionicons  style={{ backgroundColor: "#252525", padding: 5, borderRadius: 20 }} name="location" size={18} color="white" />
+        <Ionicons
+          style={{ backgroundColor: "#252525", padding: 5, borderRadius: 20 }}
+          name="location"
+          size={18}
+          color="white"
+        />
         <Text style={{ color: "white" }}>0.00</Text>
       </View>
     </View>
+    </>
   );
 };
 
