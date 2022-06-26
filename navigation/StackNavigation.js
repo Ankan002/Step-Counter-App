@@ -10,12 +10,21 @@ import Notifications from "../screens/Notifications";
 import PricingScreen from "../screens/PricingScreen";
 import SignupScreen from "../screens/SignupScreen";
 import BottomNavigator from "./BottomNavigation";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import { useEffect, useState } from "react";
 
 const Stack = createStackNavigator();
 
 const StackNavigator = () => {
+  const [skipIntro, setSkipIntro] = useState(false);
+
+  console.log(skipIntro);
+
   return (
-    <Stack.Navigator screenOptions={{ headerShown: false }}>
+    <Stack.Navigator
+      initialRouteName={"Introslider"}
+      screenOptions={{ headerShown: false }}
+    >
       <Stack.Screen name="Introslider" component={Introslider} />
       <Stack.Screen name="Login" component={LoginScreen} />
       <Stack.Screen name="Signup" component={SignupScreen} />

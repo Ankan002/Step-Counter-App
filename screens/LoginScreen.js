@@ -5,13 +5,50 @@ import {
   ScrollView,
   TouchableOpacity,
 } from "react-native";
-import React from "react";
+import React, { useState, useEffect } from "react";
 import styles from "../styles/globalcss";
 import BackPress from "../components/BackPress";
 import { useNavigation } from "@react-navigation/native";
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
+import axios from "axios";
 const LoginScreen = () => {
   const navigation = useNavigation();
+
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const handleLogin = () => {
+    axios.post("http://192.168.43.53:3000/api/Login", {
+      email:email.email,
+      password:password.password
+    }).then((acc)=>{
+      // console.log(acc.data)
+
+      const stringifiedIt = JSON.stringify(acc.data)
+
+
+      const storeData = async () => {
+        try {
+          await AsyncStorage.setItem('jwt',stringifiedIt)
+        } catch (e) {
+          console.log(e)
+        }
+      }
+      storeData()
+
+
+
+
+
+
+
+
+      navigation.replace("ActivateAccount")
+    }).catch((err)=>{
+      console.log(err.message)
+    })
+  };
 
   return (
     <ScrollView style={styles.backall}>
@@ -21,7 +58,13 @@ const LoginScreen = () => {
         <Text style={{ color: "white", marginLeft: 10, marginTop: 5 }}>
           Email
         </Text>
-        <TextInput keyboardType="email-address" style={styles.input} />
+        <TextInput
+          onChangeText={(text) => {
+            setEmail({ email: text });
+          }}
+          keyboardType="email-address"
+          style={styles.input}
+        />
 
         <Text style={{ color: "white", marginLeft: 10, marginTop: 5 }}>
           Password
@@ -31,10 +74,14 @@ const LoginScreen = () => {
           secureTextEntry={true}
           maxLength={25}
           style={styles.input}
+          onChangeText={(text) => {
+            setPassword({ password: text });
+          }}
         />
 
         <View style={{ marginHorizontal: 40, marginTop: 20 }}>
-          <TouchableOpacity onPress={()=>navigation.navigate("ActivateAccount")}  >
+          <TouchableOpacity onPress={handleLogin}>
+            {/* <TouchableOpacity onPress={()=>navigation.navigate("ActivateAccount")}  > */}
             <Text
               style={{
                 color: "white",

@@ -1,10 +1,65 @@
 import { View, Text, TouchableOpacity } from "react-native";
-import React from "react";
+import React,{useState,useEffect} from "react";
 import styles from "../styles/globalcss";
 import { useNavigation } from "@react-navigation/native";
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const PricingScreen = () => {
     const navigation = useNavigation();
+
+
+
+    useEffect(() => {
+      const getData = async () => {
+        try {
+          const value = await AsyncStorage.getItem("skipPricing");
+          console.log(value);
+          if(value){
+            navigation.replace("Home")
+  
+          }
+  
+  
+  
+  
+          
+        } catch (e) {
+          console.log(e);
+        }
+      };
+  
+      getData();
+    }, []);
+
+
+
+
+    const handleProceed = async () => {
+
+      try {
+        await AsyncStorage.setItem('skipPricing', "skipPricingSection")
+      } catch (e) {
+       console.log(e)
+      }
+      navigation.replace("Home")
+  
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   return (
     <View style={styles.backall}>
       <View
@@ -102,7 +157,8 @@ const PricingScreen = () => {
           You Need To Purchase This Plan {"\n"}First. If You Want To Proceed.
         </Text>
         <TouchableOpacity
-          onPress={() => navigation.replace("Home")}
+          onPress={handleProceed}
+          // onPress={() => navigation.replace("Home")}
           style={{ alignItems: "center", marginTop: 20 }}
         >
           <Text

@@ -44,7 +44,7 @@ const TopHeader = () => {
           resizeMode={"contain"}
           borderRadius={100}
           source={{
-            uri: "https://wallpaperaccess.com/full/317501.jpg",
+            uri: "https://cdn-icons-png.flaticon.com/512/219/219983.png",
           }}
           alt="Alternate Text"
         />

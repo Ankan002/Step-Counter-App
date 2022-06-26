@@ -19,5 +19,11 @@ const styles = StyleSheet.create({
     borderBottomColor:"#00DCFF",
     color:"white",
   },
+  tinyLogo: {
+    width: 120,
+    height: 100,
+    marginVertical:"60%"
+
+  },
 });
 export default styles;

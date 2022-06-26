@@ -1,11 +1,53 @@
 import { View, Text, TextInput, TouchableOpacity } from "react-native";
-import React from "react";
+import React,{useState,useEffect} from "react";
 import styles from "../styles/globalcss";
 import Ionicons from "react-native-vector-icons/Ionicons";
 import { useNavigation } from "@react-navigation/native";
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const EnterReferalCode = () => {
   const navigation = useNavigation();
+
+
+
+
+  useEffect(() => {
+    const getData = async () => {
+      try {
+        const value = await AsyncStorage.getItem("skipReferal");
+        console.log(value);
+        if(value){
+          navigation.replace("PricingScreen")
+
+        }
+
+
+
+
+        
+      } catch (e) {
+        console.log(e);
+      }
+    };
+
+    getData();
+  }, []);
+
+  const handleProceed = async () => {
+
+    try {
+      await AsyncStorage.setItem('skipReferal', "skipReferalSection")
+    } catch (e) {
+     console.log(e)
+    }
+    navigation.replace("PricingScreen")
+
+  }
+
+
+
+
+
 
   return (
     <View style={styles.backall}>
@@ -55,7 +97,7 @@ const EnterReferalCode = () => {
         <TextInput keyboardType="default" style={styles.input} />
 
         <TouchableOpacity
-          onPress={()=>navigation.replace("PricingScreen")}
+          onPress={handleProceed}
           style={{ alignItems: "center", marginTop: 20 }}
         >
           <Text

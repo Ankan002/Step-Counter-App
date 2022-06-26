@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-
+import React, { useState ,useEffect} from "react";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import {
   SafeAreaView,
   StyleSheet,
@@ -16,6 +16,56 @@ import LoginScreen from "../screens/LoginScreen";
 const Introslider = () => {
   const [showRealApp, setShowRealApp] = useState(false);
   const navigation = useNavigation();
+  const [showthiscreen, setShowthiscreen] = useState(false);
+
+
+
+
+  useEffect(() => {
+    const getData = async () => {
+      try {
+        const value = await AsyncStorage.getItem("jwt");
+        console.log(value);
+        if(value){
+          navigation.replace("ActivateAccount")
+
+        }
+
+
+
+
+        
+      } catch (e) {
+        console.log(e);
+      }
+    };
+
+    getData();
+    setShowthiscreen(true)
+  }, []);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
   const onDone = () => {
     setShowRealApp(true);
