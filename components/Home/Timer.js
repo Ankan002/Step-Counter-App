@@ -2,7 +2,7 @@ import { View, Text } from "react-native";
 import React from "react";
 import CircularProgress from "react-native-circular-progress-indicator";
 import { Center } from "native-base";
-const Timer = () => {
+const Timer = (props) => {
   const handleCompleted = () => {
     console.log("completed");
     // alert("completed");
@@ -11,7 +11,7 @@ const Timer = () => {
     <View>
       <Center style={{ marginTop: 20 }}>
         <CircularProgress
-          value={150}
+          value={props.stepValue}
           maxValue={200}
           radius={100}
           titleColor="white"

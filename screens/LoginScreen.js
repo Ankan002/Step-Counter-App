@@ -17,6 +17,7 @@ const LoginScreen = () => {
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [message, setMessage] = useState("");
 
   const handleLogin = () => {
     axios.post("http://192.168.43.53:3000/api/Login", {
@@ -36,17 +37,18 @@ const LoginScreen = () => {
         }
       }
       storeData()
-
-
-
-
-
-
-
-
+      
+      
+      
+      
+      
+      
+      
+      
       navigation.replace("ActivateAccount")
     }).catch((err)=>{
       console.log(err.message)
+      setMessage("Email Or Password Is Wrong")
     })
   };
 
@@ -55,6 +57,7 @@ const LoginScreen = () => {
       <BackPress name="Login" />
 
       <View style={{ marginTop: 80, marginHorizontal: 40 }}>
+      <Text style={{textAlign:"center",color:"#00DCFF",marginBottom:20,fontWeight:"bold"}} >{message}</Text>
         <Text style={{ color: "white", marginLeft: 10, marginTop: 5 }}>
           Email
         </Text>
