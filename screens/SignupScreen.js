@@ -26,7 +26,7 @@ const SignupScreen = () => {
     }
 
     axios
-      .post("http://192.168.43.53:3000/api/Signup", {
+      .post("https://step-counter-dashboard.vercel.app/api/Signup", {
         username: userName.userName,
         email: email.email,
         password: password.password,
