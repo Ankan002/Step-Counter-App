@@ -9,6 +9,9 @@ import { TouchableOpacity } from "react-native-gesture-handler";
 import EditProfile from "../components/Profile/EditProfile";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import axios from "axios";
+import {DevSettings} from 'react-native';
+
+
 
 const Profile = () => {
   const navigation = useNavigation();
@@ -48,6 +51,51 @@ const Profile = () => {
   }, []);
 
   console.log(userData);
+
+
+
+  const  handleLogout = () =>{
+    console.log("logout clicked")
+
+
+
+    const removeAll = async () => {
+      await AsyncStorage.removeItem("jwt");
+      await AsyncStorage.removeItem("skipActivate");
+      await AsyncStorage.removeItem("skipReferal");
+      await AsyncStorage.removeItem("skipPricing");
+      DevSettings.reload()
+     
+
+
+    };
+
+
+    removeAll()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  }
+
+
+
+
+
+
+
+
+
 
   return (
     <ScrollView style={styles.backall}>
@@ -365,7 +413,7 @@ const Profile = () => {
                   marginTop: 50,
                 }}
               >
-                <TouchableOpacity>
+                <TouchableOpacity onPress={handleLogout} >
                   <Text
                     style={{
                       color: "#00DCFF",
