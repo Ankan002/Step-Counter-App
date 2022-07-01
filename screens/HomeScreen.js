@@ -9,7 +9,6 @@ import Past7Days from "../components/Home/Past7Days";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { Pedometer } from "expo-sensors";
 import {  Center } from "native-base";
-
 const HomeScreen = () => {
   const [pedometerAvalibility, setPedometerAvalibility] = useState("");
   const [stepcounter, setStepcounter] = useState(0);
@@ -17,7 +16,69 @@ const HomeScreen = () => {
   useEffect(() => {
     // removeAll()
     subscribe()
+
+
+    const getData = async () => {
+      try {
+        const value = await AsyncStorage.getItem("jwt");
+        // console.log(value);
+
+        let parsedValue = JSON.parse(value)
+        
+        let userId = parsedValue._id
+        // console.log(userId)
+
+
+        const storeData = async () => {
+          try {
+            await AsyncStorage.setItem('ActiveUserId',userId)
+          } catch (e) {
+            console.log(e)
+          }
+        }
+        storeData()
+
+
+        // AsyncStorage.setItem("ActiveUserId",userId)
+
+
+        
+
+
+
+
+
+        
+      } catch (e) {
+        console.log(e);
+      }
+    };
+
+    getData();
+
   }, []);
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
   const subscribe = () =>{
