@@ -22,7 +22,7 @@ const Dashboard = () => {
 
   return (
     <ScrollView style={styles.backall}>
-      <View
+      {/* <View
         style={{
           flexDirection: "row",
           marginTop: 35,
@@ -48,7 +48,7 @@ const Dashboard = () => {
         >
           Dashboard
         </Text>
-      </View>
+      </View> */}
 
       {/* navigation ends here  */}
 
@@ -56,11 +56,11 @@ const Dashboard = () => {
 
      <WallateInfo/>
 
-      <View style={{ marginTop: 15 }}>
+      {/* <View style={{ marginTop: 15 }}>
         <Past7Days />
-      </View>
+      </View> */}
 
-      <View style={{ marginHorizontal: 20, marginTop: 20 }}>
+      <View style={{ marginHorizontal: 20, marginTop: 10 }}>
         <Text style={{ color: "white", fontWeight: "bold", fontSize: 18 }}>
           Total Withdrawal
         </Text>

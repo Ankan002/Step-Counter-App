@@ -1,4 +1,10 @@
-import { View, Text, ScrollView, TextInput } from "react-native";
+import {
+  View,
+  Text,
+  ScrollView,
+  TextInput,
+  ActivityIndicator,
+} from "react-native";
 import React, { useState, useEffect } from "react";
 import Ionicons from "react-native-vector-icons/Ionicons";
 import styles from "../styles/globalcss";
@@ -44,9 +50,12 @@ const Profile = () => {
 
         const fetchUserData = async () => {
           axios
-            .post("https://step-counter-dashboard.vercel.app/api/dynamic/singleUser", {
-              activeUserId: ActiveUserIdValue,
-            })
+            .post(
+              "https://step-counter-dashboard.vercel.app/api/dynamic/singleUser",
+              {
+                activeUserId: ActiveUserIdValue,
+              }
+            )
             .then((acc) => {
               console.log(acc.data);
               setUserData(acc.data);
@@ -496,7 +505,9 @@ const Profile = () => {
               </View>
             </>
           ) : (
-            <></>
+            <View style={{ marginTop: "70%" }}>
+              <ActivityIndicator size="large" color="white" />
+            </View>
           )}
         </>
       )}

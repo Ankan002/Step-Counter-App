@@ -10,7 +10,7 @@ import WallateInfo from "../components/Dashboard/WallateInfo";
 const Withdrawn = () => {
   return (
     <ScrollView style={styles.backall}>
-      <View>
+      {/* <View>
         <View
           style={{
             flexDirection: "row",
@@ -38,15 +38,15 @@ const Withdrawn = () => {
             Withdraw Coins
           </Text>
         </View>
-      </View>
+      </View> */}
 
       {/* navigation ends here  */}
 
       <WallateInfo />
 
-      <View style={{ marginTop: 15 }}>
+      {/* <View style={{ marginTop: 15 }}>
         <Past7Days />
-      </View>
+      </View> */}
       <View style={{ marginTop: 15 }}>
         <TouchableOpacity>
           <Text

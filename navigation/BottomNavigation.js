@@ -16,7 +16,9 @@ function BottomNavigator() {
         headerShown: false,
         tabBarStyle: { backgroundColor: "#1E1D1D" },
         tabBarShowLabel: false,
+
       }}
+      
     >
       <Tab.Screen
         name="Homescreen"

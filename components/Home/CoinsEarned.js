@@ -16,9 +16,12 @@ const CoinsEarned = () => {
 
         const fetchUserData = async () => {
           axios
-            .post("https://step-counter-dashboard.vercel.app/api/dynamic/singleUser", {
-              activeUserId: ActiveUserIdValue,
-            })
+            .post(
+              "https://step-counter-dashboard.vercel.app/api/dynamic/singleUser",
+              {
+                activeUserId: ActiveUserIdValue,
+              }
+            )
             .then((acc) => {
               // console.log(acc.data);
               setUserData(acc.data);
@@ -43,8 +46,6 @@ const CoinsEarned = () => {
     <>
       {userData ? (
         <View style={{ marginHorizontal: 15, marginTop: 10 }}>
-          
-
           <View style={{ flexDirection: "row", marginTop: 10 }}>
             <Text
               style={{
@@ -57,7 +58,11 @@ const CoinsEarned = () => {
                 borderRadius: 10,
               }}
             >
-              "{userData[0].Goal}" Daily Goal
+              <Text style={{ color: "#00DCFF", fontWeight: "bold" }}>
+                {" "}
+                {userData[0].Goal}
+              </Text>{" "}
+              Daily Goal
             </Text>
             <Text
               style={{
@@ -70,7 +75,10 @@ const CoinsEarned = () => {
                 borderRadius: 10,
               }}
             >
-             "{userData[0].wallate}"  Total Wallet
+              <Text style={{ color: "#00DCFF", fontWeight: "bold" }}>
+                {userData[0].wallate}
+              </Text>{" "}
+              Total Wallet
             </Text>
           </View>
         </View>

@@ -17,6 +17,11 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import { Pedometer } from "expo-sensors";
 import { Center } from "native-base";
 import axios from "axios";
+import WallateInfo from "../components/Dashboard/WallateInfo";
+import Dashboard from "./Dashboard";
+import Withdrawn from "./Withdrawn";
+import { useNavigation } from '@react-navigation/native';
+
 
 const HomeScreen = () => {
   const [pedometerAvalibility, setPedometerAvalibility] = useState("");
@@ -26,6 +31,8 @@ const HomeScreen = () => {
   const [goal, setGoal] = useState();
   const [currentWallate, setCurrentWallate] = useState();
   const [activeUser, setActiveuser] = useState();
+  const navigation = useNavigation();
+
 
   useEffect(() => {
     // removeAll()
@@ -78,7 +85,7 @@ const HomeScreen = () => {
               // console.log(acc.data);
               setUserData(acc.data);
               setGoal(acc.data[0].Goal);
-              setCurrentWallate(acc.data[0].wallate)
+              setCurrentWallate(acc.data[0].wallate);
             })
             .catch((err) => {
               console.log(err);
@@ -128,6 +135,23 @@ const HomeScreen = () => {
   if (stepcounter == goal) {
     console.log("add one more coin");
   }
+
+
+
+  const handleRequestWithdrawal = () =>{
+    navigation.navigate("WithdrawalRequestWindow")
+  }
+
+
+
+
+
+
+
+
+
+
+
 
   return (
     <ScrollView style={styles.backall}>
@@ -181,10 +205,36 @@ const HomeScreen = () => {
         </View>
       </Modal>
       <TopHeader />
-      <Timer activeuserid={activeUser} curWalleteStatus={currentWallate} goalValue={goal} stepValue={stepcounter} />
+      <Timer
+        activeuserid={activeUser}
+        curWalleteStatus={currentWallate}
+        goalValue={goal}
+        stepValue={stepcounter}
+      />
       <Items steps={stepcounter} calory={Calories} distance={DistanceCovered} />
       <CoinsEarned />
-      <Past7Days />
+      {/* <Past7Days /> */}
+
+      {/* other screens  */}
+
+      {/* <WallateInfo/> */}
+      <Dashboard />
+
+      <View style={{ marginTop: 15, marginBottom: 20 }}>
+        <TouchableOpacity  onPress={handleRequestWithdrawal}>
+          <Text
+            style={{
+              backgroundColor: "#00DCFF",
+              textAlign: "center",
+              marginHorizontal: 80,
+              padding: 10,
+              borderRadius: 10,
+            }}
+          >
+            Request Withdrawal
+          </Text>
+        </TouchableOpacity>
+      </View>
     </ScrollView>
   );
 };

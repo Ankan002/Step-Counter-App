@@ -12,6 +12,9 @@ import SignupScreen from "../screens/SignupScreen";
 import BottomNavigator from "./BottomNavigation";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useEffect, useState } from "react";
+import Profile from "../screens/Profile";
+import WithdrawalRequestWindow from "../screens/WithdrawalRequestWindow";
+
 
 const Stack = createStackNavigator();
 
@@ -31,10 +34,12 @@ const StackNavigator = () => {
       <Stack.Screen name="ForgetPassword" component={ForgetPasswordScreen} />
       <Stack.Screen name="EnterOtp" component={EnterOtp} />
       <Stack.Screen name="ActivateAccount" component={ActivateAccount} />
-      <Stack.Screen name="Home" component={BottomNavigator} />
+      <Stack.Screen name="Home" component={HomeScreen} />
       <Stack.Screen name="EnterReferalCode" component={EnterReferalCode} />
       <Stack.Screen name="PricingScreen" component={PricingScreen} />
       <Stack.Screen name="Notifications" component={Notifications} />
+      <Stack.Screen name="Profile" component={Profile} />
+      <Stack.Screen name="WithdrawalRequestWindow" component={WithdrawalRequestWindow} />
     </Stack.Navigator>
   );
 };
