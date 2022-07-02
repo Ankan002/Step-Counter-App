@@ -19,7 +19,6 @@ import { Center } from "native-base";
 const HomeScreen = () => {
   const [pedometerAvalibility, setPedometerAvalibility] = useState("");
   const [stepcounter, setStepcounter] = useState(0);
-
   const [showvalue, setShowvalue] = useState();
 
   useEffect(() => {
@@ -29,7 +28,7 @@ const HomeScreen = () => {
     const getData = async () => {
       try {
         const value = await AsyncStorage.getItem("jwt");
-        // console.log(value);
+        console.log(value);
 
         let parsedValue = JSON.parse(value);
 
@@ -38,7 +37,7 @@ const HomeScreen = () => {
 
 
 
-        // console.log(userId)
+        console.log(userId)
 
         const storeData = async () => {
           try {
@@ -70,12 +69,13 @@ const HomeScreen = () => {
       });
   };
 
-  // const removeAll = async () => {
-  //   await AsyncStorage.removeItem("jwt");
-  //   await AsyncStorage.removeItem("skipActivate");
-  //   await AsyncStorage.removeItem("skipReferal");
-  //   await AsyncStorage.removeItem("skipPricing");
-  // };
+  const removeAll = async () => {
+    await AsyncStorage.removeItem("jwt");
+    await AsyncStorage.removeItem("skipActivate");
+    await AsyncStorage.removeItem("skipReferal");
+    await AsyncStorage.removeItem("skipPricing");
+    await AsyncStorage.removeItem("ActiveUserId");
+  };
 
   // This is counting the distance
   let Dist = stepcounter / 1300;

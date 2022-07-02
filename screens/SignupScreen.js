@@ -53,14 +53,14 @@ const SignupScreen = () => {
       })
       .catch((err) => {
         setIsloading(false);
-        return setMessage("please fill all the colons carefully");
+        return setMessage("Please Fill All The Fields Carefully");
       });
   };
 
   return (
     <ScrollView style={styles.backall}>
       <BackPress name="Signup" />
-      <Text style={{ color: "white", textAlign: "center", marginTop: 10 }}>
+      <Text style={{  color: "#00DCFF", textAlign: "center", marginTop: 10 }}>
         {message}
       </Text>
 
@@ -114,7 +114,7 @@ const SignupScreen = () => {
           {/* <TouchableOpacity onPress={()=>navigation.navigate("ActivateAccount")}> */}
           {isloading ? (
             <>
-              <TouchableOpacity onPress={handleSignup}>
+              
                 <Text
                   style={{
                     color: "white",
@@ -128,7 +128,7 @@ const SignupScreen = () => {
                 >
                   <ActivityIndicator color="white" />
                 </Text>
-              </TouchableOpacity>
+             
             </>
           ) : (
             <>
