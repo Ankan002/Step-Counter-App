@@ -1,11 +1,48 @@
 import { View, Text, TouchableOpacity } from "react-native";
-import React from "react";
+import React,{useState,useEffect} from "react";
 import FontAwesome from "react-native-vector-icons/FontAwesome";
 import { Image } from "native-base";
 import { useNavigation } from "@react-navigation/native";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import axios from "axios";
 
 const TopHeader = () => {
   const navigation = useNavigation();
+  const [userData, setUserData] = useState();
+
+
+
+ 
+    const getData = async () => {
+      try {
+        const ActiveUserIdValue = await AsyncStorage.getItem("ActiveUserId");
+        // console.log(ActiveUserIdValue);
+       
+
+        const fetchUserData = async () => {
+          axios
+            .post("http://192.168.43.53:3000/api/dynamic/singleUser", {
+              activeUserId: ActiveUserIdValue,
+            })
+            .then((acc) => {
+              // console.log(acc.data);
+              setUserData(acc.data);
+            })
+            .catch((err) => {
+              console.log(err);
+            });
+        };
+
+        fetchUserData();
+      } catch (e) {
+        console.log(e);
+      }
+    };
+
+    getData();
+ 
+
+  
 
   return (
     <View
@@ -23,6 +60,27 @@ const TopHeader = () => {
           <FontAwesome name="bell" size={18} color="white" />
         </TouchableOpacity>
       </Text>
+    {
+      userData ? 
+      <Text
+        style={{
+          color: "white",
+          flex: 5,
+          textAlign: "center",
+          marginTop: 5,
+          fontWeight: "bold",
+          fontSize: 18,
+        }}
+      >
+        Hi, {userData[0].username}
+      </Text>
+
+
+      :
+
+      <>
+
+
       <Text
         style={{
           color: "white",
@@ -35,6 +93,12 @@ const TopHeader = () => {
       >
         Hi, User
       </Text>
+
+
+
+
+      </>
+    }
       {/* <Text style={{ color: "white", flex: 1, textAlign: "center" }}>
         Profile
       </Text> */}

@@ -4,7 +4,7 @@ import MaterialIcons from "react-native-vector-icons/MaterialIcons";
 import FontAwesome5 from "react-native-vector-icons/FontAwesome5";
 import Ionicons from "react-native-vector-icons/Ionicons";
 
-const Items = () => {
+const Items = (props) => {
   return (
     <>
       
@@ -25,7 +25,7 @@ const Items = () => {
           size={18}
           color="white"
         />
-        <Text style={{ color: "white" }}>0.00</Text>
+        <Text style={{ color: "white" }}>{props.calory}</Text>
       </View>
       <View
         style={{
@@ -43,7 +43,7 @@ const Items = () => {
           size={18}
           color="white"
         />
-        <Text style={{ color: "white" }}>0.00</Text>
+        <Text style={{ color: "white" }}>{props.steps}</Text>
       </View>
       <View
         style={{
@@ -61,7 +61,7 @@ const Items = () => {
           size={18}
           color="white"
         />
-        <Text style={{ color: "white" }}>0.00</Text>
+        <Text style={{ color: "white" }}>{props.distance}</Text>
       </View>
     </View>
     </>

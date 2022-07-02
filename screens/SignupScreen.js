@@ -4,13 +4,14 @@ import {
   TextInput,
   ScrollView,
   TouchableOpacity,
+  ActivityIndicator,
 } from "react-native";
 import React, { useState } from "react";
 import styles from "../styles/globalcss";
 import BackPress from "../components/BackPress";
 import { useNavigation } from "@react-navigation/native";
 import axios from "axios";
-import AsyncStorage from '@react-native-async-storage/async-storage';
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const SignupScreen = () => {
   const navigation = useNavigation();
@@ -20,10 +21,13 @@ const SignupScreen = () => {
   const [repassword, setrePassword] = useState("");
   const [message, setMessage] = useState();
 
+  const [isloading, setIsloading] = useState(false);
+
   const handleSignup = () => {
     if (password.password !== repassword.repassword) {
       console.log("password dont match what you are doing");
     }
+    setIsloading(true);
 
     axios
       .post("https://step-counter-dashboard.vercel.app/api/Signup", {
@@ -34,25 +38,21 @@ const SignupScreen = () => {
       .then((acc) => {
         // console.log(acc.data);
 
-
-        const stringifiedIt = JSON.stringify(acc.data)
-
-
+        const stringifiedIt = JSON.stringify(acc.data);
 
         const storeData = async () => {
           try {
-            await AsyncStorage.setItem('jwt',stringifiedIt)
+            await AsyncStorage.setItem("jwt", stringifiedIt);
           } catch (e) {
-            console.log(e)
+            console.log(e);
           }
-        }
-        storeData()
-
-
+        };
+        storeData();
 
         navigation.replace("ActivateAccount");
       })
       .catch((err) => {
+        setIsloading(false);
         return setMessage("please fill all the colons carefully");
       });
   };
@@ -112,21 +112,43 @@ const SignupScreen = () => {
 
         <View style={{ marginHorizontal: 40, marginTop: 20 }}>
           {/* <TouchableOpacity onPress={()=>navigation.navigate("ActivateAccount")}> */}
-          <TouchableOpacity onPress={handleSignup}>
-            <Text
-              style={{
-                color: "white",
-                textAlign: "center",
-                backgroundColor: "#00DCFF",
-                padding: 10,
-                borderRadius: 10,
-                color: "black",
-                fontWeight: "bold",
-              }}
-            >
-              Create Account
-            </Text>
-          </TouchableOpacity>
+          {isloading ? (
+            <>
+              <TouchableOpacity onPress={handleSignup}>
+                <Text
+                  style={{
+                    color: "white",
+                    textAlign: "center",
+                    backgroundColor: "#00DCFF",
+                    padding: 10,
+                    borderRadius: 10,
+                    color: "black",
+                    fontWeight: "bold",
+                  }}
+                >
+                  <ActivityIndicator color="white" />
+                </Text>
+              </TouchableOpacity>
+            </>
+          ) : (
+            <>
+              <TouchableOpacity onPress={handleSignup}>
+                <Text
+                  style={{
+                    color: "white",
+                    textAlign: "center",
+                    backgroundColor: "#00DCFF",
+                    padding: 10,
+                    borderRadius: 10,
+                    color: "black",
+                    fontWeight: "bold",
+                  }}
+                >
+                  Signup
+                </Text>
+              </TouchableOpacity>
+            </>
+          )}
         </View>
         <TouchableOpacity onPress={() => navigation.navigate("Login")}>
           <Text

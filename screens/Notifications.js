@@ -1,11 +1,45 @@
-import { View, Text ,ScrollView} from "react-native";
-import React from "react";
+import { View, Text, ScrollView } from "react-native";
+import React, { useState, useEffect } from "react";
 import { useNavigation } from "@react-navigation/native";
 import Ionicons from "react-native-vector-icons/Ionicons";
 import styles from "../styles/globalcss";
-
+import axios from "axios";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 const Notifications = () => {
   const navigation = useNavigation();
+  const [userData, setUserData] = useState();
+
+  useEffect(() => {
+    const getData = async () => {
+      try {
+        const ActiveUserIdValue = await AsyncStorage.getItem("ActiveUserId");
+        // console.log(ActiveUserIdValue);
+
+        const fetchUserData = async () => {
+          axios
+            .post(
+              "http://192.168.43.53:3000/api/dynamic/SingleUserNotification",
+              {
+                activeUserId: ActiveUserIdValue,
+              }
+            )
+            .then((acc) => {
+              // console.log(acc.data);
+              setUserData(acc.data);
+            })
+            .catch((err) => {
+              console.log(err);
+            });
+        };
+
+        fetchUserData();
+      } catch (e) {
+        console.log(e);
+      }
+    };
+
+    getData();
+  }, []);
 
   return (
     <ScrollView style={styles.backall}>
@@ -35,96 +69,57 @@ const Notifications = () => {
         </Text>
       </View>
 
-      <View style={{ marginHorizontal: 20, marginTop: 30 }}>
+      {userData ? (
+        <>
+          {userData.map((hit) => {
+            return (
+              <View
+                style={{ marginHorizontal: 20, marginTop: 30 }}
+                key={hit._id}
+              >
+                <View
+                  style={{
+                    flexWrap: "nowrap",
+                    backgroundColor: "#00DCFF",
+                    padding: 20,
+                    borderTopStartRadius: 30,
+                    borderBottomEndRadius: 30,
+                  }}
+                >
+                  <Text>
+                    {hit.notificationMessage}
+                  </Text>
+                </View>
+              </View>
+            );
+          })}
+        </>
+      ) : (
+        <>
+
+
         <View
-          style={{
-            flexWrap: "nowrap",
-            backgroundColor: "#00DCFF",
-            padding: 20,
-            borderTopStartRadius: 30,
-            borderBottomEndRadius: 30,
-          }}
-        >
-          <Text>
-            This is some notification for you and you will see this only
-          </Text>
-        </View>
-      </View>
-      <View style={{ marginHorizontal: 20, marginTop: 20 }}>
-        <View
-          style={{
-            flexWrap: "nowrap",
-            backgroundColor: "#00DCFF",
-            padding: 20,
-            borderTopStartRadius: 30,
-            borderBottomEndRadius: 30,
-          }}
-        >
-          <Text>
-            This is some notification for you and you will see this only
-          </Text>
-        </View>
-      </View>
-      <View style={{ marginHorizontal: 20, marginTop: 20 }}>
-        <View
-          style={{
-            flexWrap: "nowrap",
-            backgroundColor: "#00DCFF",
-            padding: 20,
-            borderTopStartRadius: 30,
-            borderBottomEndRadius: 30,
-          }}
-        >
-          <Text>
-            This is some notification for you and you will see this only
-          </Text>
-        </View>
-      </View>
-      <View style={{ marginHorizontal: 20, marginTop: 20 }}>
-        <View
-          style={{
-            flexWrap: "nowrap",
-            backgroundColor: "#00DCFF",
-            padding: 20,
-            borderTopStartRadius: 30,
-            borderBottomEndRadius: 30,
-          }}
-        >
-          <Text>
-            This is some notification for you and you will see this only
-          </Text>
-        </View>
-      </View>
-      <View style={{ marginHorizontal: 20, marginTop: 20 }}>
-        <View
-          style={{
-            flexWrap: "nowrap",
-            backgroundColor: "#00DCFF",
-            padding: 20,
-            borderTopStartRadius: 30,
-            borderBottomEndRadius: 30,
-          }}
-        >
-          <Text>
-            This is some notification for you and you will see this only
-          </Text>
-        </View>
-      </View>
-      <View style={{ marginHorizontal: 20, marginTop: 20 }}>
-        <View
-          style={{
-            flexWrap: "nowrap",
-            backgroundColor: "#00DCFF",
-            padding: 20,
-            borderTopStartRadius: 30,
-            borderBottomEndRadius: 30,
-          }}
-        >
-          <Text>
-            This is some notification for you and you will see this only
-          </Text>
-        </View>
-      </View>
+                style={{ marginHorizontal: 20, marginTop: 30 }}
+               
+              >
+                <View
+                  style={{
+                    flexWrap: "nowrap",
+                    backgroundColor: "#00DCFF",
+                    padding: 20,
+                    borderTopStartRadius: 30,
+                    borderBottomEndRadius: 30,
+                  }}
+                >
+                  <Text>
+                   Loading Messages ...
+                  </Text>
+                </View>
+              </View>
+
+
+        </>
+      )}
     </ScrollView>
   );
 };

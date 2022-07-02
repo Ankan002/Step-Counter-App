@@ -1,11 +1,25 @@
 import { View, Text, ScrollView } from "react-native";
-import React from "react";
+import React,{useState,useEffect} from "react";
 import styles from "../styles/globalcss";
 import MaterialIcons from "react-native-vector-icons/MaterialIcons";
 import FontAwesome5 from "react-native-vector-icons/FontAwesome5";
 import Ionicons from "react-native-vector-icons/Ionicons";
 import Past7Days from "../components/Home/Past7Days";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import axios from "axios";
+import WallateInfo from "../components/Dashboard/WallateInfo";
+import Items from "../components/Home/Items"
 const Dashboard = () => {
+  
+
+
+
+
+
+
+
+
+
   return (
     <ScrollView style={styles.backall}>
       <View
@@ -38,136 +52,9 @@ const Dashboard = () => {
 
       {/* navigation ends here  */}
 
-      <View
-        style={{ marginHorizontal: 30, marginTop: 30, flexDirection: "row" }}
-      >
-        <View
-          style={{
-            flex: 1,
-            alignItems: "center",
-            backgroundColor: "#121212",
-            padding: 10,
-            margin: 10,
-            borderRadius: 10,
-          }}
-        >
-          <MaterialIcons
-            style={{ backgroundColor: "#252525", padding: 5, borderRadius: 20 }}
-            name="local-fire-department"
-            size={18}
-            color="white"
-          />
-          <Text style={{ color: "white" }}>0.00</Text>
-        </View>
-        <View
-          style={{
-            flex: 1,
-            alignItems: "center",
-            backgroundColor: "#121212",
-            padding: 10,
-            margin: 10,
-            borderRadius: 10,
-          }}
-        >
-          <FontAwesome5
-            style={{ backgroundColor: "#252525", padding: 5, borderRadius: 20 }}
-            name="walking"
-            size={18}
-            color="white"
-          />
-          <Text style={{ color: "white" }}>0.00</Text>
-        </View>
-        <View
-          style={{
-            flex: 1,
-            alignItems: "center",
-            backgroundColor: "#121212",
-            padding: 10,
-            margin: 10,
-            borderRadius: 10,
-          }}
-        >
-          <Ionicons
-            style={{ backgroundColor: "#252525", padding: 5, borderRadius: 20 }}
-            name="location"
-            size={18}
-            color="white"
-          />
-          <Text style={{ color: "white" }}>0.00</Text>
-        </View>
-      </View>
-      <View style={{ marginHorizontal: 30, flexDirection: "row" }}>
-        <View
-          style={{
-            flex: 1,
-            alignItems: "center",
-            backgroundColor: "#121212",
-            padding: 10,
-            margin: 10,
-            borderRadius: 10,
-          }}
-        >
-          <MaterialIcons
-            style={{ backgroundColor: "#252525", padding: 5, borderRadius: 20 }}
-            name="local-fire-department"
-            size={18}
-            color="white"
-          />
-          <Text style={{ color: "white" }}>0.00</Text>
-        </View>
-        <View
-          style={{
-            flex: 1,
-            alignItems: "center",
-            backgroundColor: "#121212",
-            padding: 10,
-            margin: 10,
-            borderRadius: 10,
-          }}
-        >
-          <FontAwesome5
-            style={{ backgroundColor: "#252525", padding: 5, borderRadius: 20 }}
-            name="walking"
-            size={18}
-            color="white"
-          />
-          <Text style={{ color: "white" }}>0.00</Text>
-        </View>
-        <View
-          style={{
-            flex: 1,
-            alignItems: "center",
-            backgroundColor: "#121212",
-            padding: 10,
-            margin: 10,
-            borderRadius: 10,
-          }}
-        >
-          <Ionicons
-            style={{ backgroundColor: "#252525", padding: 5, borderRadius: 20 }}
-            name="location"
-            size={18}
-            color="white"
-          />
-          <Text style={{ color: "white" }}>0.00</Text>
-        </View>
-      </View>
 
-      <Text
-        style={{
-          color: "#919191",
-          textAlign: "center",
-          fontWeight: "bold",
-          marginTop: 20,
-          backgroundColor: "#121212",
-          marginHorizontal: 30,
-          padding: 20,
-          fontSize: 25,
-          borderRadius: 15,
-        }}
-      >
-        50 Coins In Wallet
-      </Text>
+
+     <WallateInfo/>
 
       <View style={{ marginTop: 15 }}>
         <Past7Days />

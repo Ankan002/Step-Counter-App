@@ -9,15 +9,31 @@ import { TouchableOpacity } from "react-native-gesture-handler";
 import EditProfile from "../components/Profile/EditProfile";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import axios from "axios";
-import {DevSettings} from 'react-native';
-
-
+import { DevSettings } from "react-native";
 
 const Profile = () => {
   const navigation = useNavigation();
   const [showEdit, setShowEdit] = useState(false);
   const [activeuser, setActiveuser] = useState();
   const [userData, setUserData] = useState();
+
+  // these states will be used in form
+
+  const [name, setName] = useState("");
+
+  const [email, setEmail] = useState("");
+
+  const [dob, setDob] = useState("");
+
+  const [age, setAge] = useState("");
+
+  const [height, setHeight] = useState("");
+
+  const [weight, setWeight] = useState("");
+
+  const [goal, setGoal] = useState("");
+
+  // States ends here
 
   useEffect(() => {
     const getData = async () => {
@@ -32,7 +48,7 @@ const Profile = () => {
               activeUserId: ActiveUserIdValue,
             })
             .then((acc) => {
-              // console.log(acc.data);
+              console.log(acc.data);
               setUserData(acc.data);
             })
             .catch((err) => {
@@ -50,52 +66,52 @@ const Profile = () => {
     setShowEdit(false);
   }, []);
 
-  console.log(userData);
+  // console.log(userData);
 
-
-
-  const  handleLogout = () =>{
-    console.log("logout clicked")
-
-
+  const handleLogout = () => {
+    console.log("logout clicked");
 
     const removeAll = async () => {
       await AsyncStorage.removeItem("jwt");
       await AsyncStorage.removeItem("skipActivate");
       await AsyncStorage.removeItem("skipReferal");
       await AsyncStorage.removeItem("skipPricing");
-      DevSettings.reload()
-     
-
-
+      await AsyncStorage.removeItem("ActiveUserId");
+      DevSettings.reload();
     };
 
+    removeAll();
+  };
 
-    removeAll()
+  const handleSave = () => {
+    // console.log(
+    //   name.name,
+    //   email.email,
+    //   dob.dob,
+    //   age.age,
+    //   height.height,
+    //   weight.weight,
+    //   goal.goal
+    // );
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-  }
-
-
-
-
-
-
-
-
-
+    axios
+      .post("http://192.168.43.53:3000/api/updateUserData", {
+        name: name.name,
+        email: email.email,
+        dob: dob.dob,
+        age: age.age,
+        height: height.height,
+        weight: weight.weight,
+        goal: goal.goal,
+        userid: activeuser,
+      })
+      .then((acc) => {
+        console.log("updated");
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
 
   return (
     <ScrollView style={styles.backall}>
@@ -134,43 +150,90 @@ const Profile = () => {
               <Text style={{ color: "white", marginLeft: 10, marginTop: 5 }}>
                 Name
               </Text>
-              <TextInput keyboardType="email-address" style={styles.input} />
+              <TextInput
+                defaultValue={userData[0].Name}
+                keyboardType="email-address"
+                style={styles.input}
+                onChangeText={(text) => {
+                  setName({ name: text });
+                }}
+              />
 
               <Text style={{ color: "white", marginLeft: 10, marginTop: 5 }}>
                 Email
               </Text>
               <TextInput
                 keyboardType="default"
-                secureTextEntry={true}
                 maxLength={25}
                 style={styles.input}
+                defaultValue={userData[0].email}
+                onChangeText={(text) => {
+                  setEmail({ email: text });
+                }}
               />
-              <Text style={{ color: "white", marginLeft: 10, marginTop: 5 }}>
-                Number
-              </Text>
-              <TextInput
-                keyboardType="default"
-                secureTextEntry={true}
-                maxLength={25}
-                style={styles.input}
-              />
+
               <Text style={{ color: "white", marginLeft: 10, marginTop: 5 }}>
                 D.O.B
               </Text>
               <TextInput
                 keyboardType="default"
-                secureTextEntry={true}
                 maxLength={25}
                 style={styles.input}
+                defaultValue={userData[0].DOB}
+                onChangeText={(text) => {
+                  setDob({ dob: text });
+                }}
               />
               <Text style={{ color: "white", marginLeft: 10, marginTop: 5 }}>
                 Age
               </Text>
               <TextInput
                 keyboardType="default"
-                secureTextEntry={true}
                 maxLength={25}
                 style={styles.input}
+                defaultValue={userData[0].Age}
+                onChangeText={(text) => {
+                  setAge({ age: text });
+                }}
+              />
+
+              <Text style={{ color: "white", marginLeft: 10, marginTop: 5 }}>
+                Height
+              </Text>
+              <TextInput
+                keyboardType="default"
+                maxLength={25}
+                style={styles.input}
+                defaultValue={userData[0].Height}
+                onChangeText={(text) => {
+                  setHeight({ height: text });
+                }}
+              />
+
+              <Text style={{ color: "white", marginLeft: 10, marginTop: 5 }}>
+                Weight
+              </Text>
+              <TextInput
+                keyboardType="default"
+                maxLength={25}
+                style={styles.input}
+                defaultValue={userData[0].Weight}
+                onChangeText={(text) => {
+                  setWeight({ weight: text });
+                }}
+              />
+
+              <Text style={{ color: "white", marginLeft: 10, marginTop: 5 }}>
+                Goal
+              </Text>
+              <TextInput
+                keyboardType="default"
+                maxLength={25}
+                style={styles.input}
+                defaultValue={userData[0].Goal}
+                onChangeText={(text) => {
+                  setGoal({ goal: text });
+                }}
               />
 
               <View
@@ -180,7 +243,8 @@ const Profile = () => {
                   marginBottom: 20,
                 }}
               >
-                <TouchableOpacity onPress={() => setShowEdit(false)}>
+                <TouchableOpacity onPress={handleSave}>
+                  {/* <TouchableOpacity onPress={() => setShowEdit(false)}> */}
                   <Text
                     style={{
                       color: "white",
@@ -285,11 +349,11 @@ const Profile = () => {
                     padding: 5,
                   }}
                 >
-                  <Text style={{ color: "white", fontSize: 20 }}>Steps</Text>
+                  <Text style={{ color: "white", fontSize: 20 }}>Wallet</Text>
                   <Text
                     style={{ color: "#00DCFF", fontSize: 18, marginTop: 5 }}
                   >
-                    95
+                    {userData[0].wallate}
                   </Text>
                 </View>
                 <View
@@ -413,7 +477,7 @@ const Profile = () => {
                   marginTop: 50,
                 }}
               >
-                <TouchableOpacity onPress={handleLogout} >
+                <TouchableOpacity onPress={handleLogout}>
                   <Text
                     style={{
                       color: "#00DCFF",
