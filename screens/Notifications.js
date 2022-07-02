@@ -18,7 +18,7 @@ const Notifications = () => {
         const fetchUserData = async () => {
           axios
             .post(
-              "http://192.168.43.53:3000/api/dynamic/SingleUserNotification",
+              "https://step-counter-dashboard.vercel.app/api/dynamic/SingleUserNotification",
               {
                 activeUserId: ActiveUserIdValue,
               }

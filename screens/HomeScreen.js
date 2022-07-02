@@ -16,10 +16,16 @@ import Past7Days from "../components/Home/Past7Days";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { Pedometer } from "expo-sensors";
 import { Center } from "native-base";
+import axios from "axios";
+
 const HomeScreen = () => {
   const [pedometerAvalibility, setPedometerAvalibility] = useState("");
   const [stepcounter, setStepcounter] = useState(0);
   const [showvalue, setShowvalue] = useState();
+  const [userData, setUserData] = useState();
+  const [goal, setGoal] = useState();
+  const [currentWallate, setCurrentWallate] = useState();
+  const [activeUser, setActiveuser] = useState();
 
   useEffect(() => {
     // removeAll()
@@ -28,16 +34,14 @@ const HomeScreen = () => {
     const getData = async () => {
       try {
         const value = await AsyncStorage.getItem("jwt");
-        console.log(value);
+        // console.log(value);
 
         let parsedValue = JSON.parse(value);
 
         let userId = parsedValue._id;
-        setShowvalue(parsedValue)
+        setShowvalue(parsedValue);
 
-
-
-        console.log(userId)
+        // console.log(userId);
 
         const storeData = async () => {
           try {
@@ -53,6 +57,41 @@ const HomeScreen = () => {
     };
 
     getData();
+
+    // another section
+
+    const getUserData = async () => {
+      try {
+        const ActiveUserIdValue = await AsyncStorage.getItem("ActiveUserId");
+        // console.log(ActiveUserIdValue);
+        setActiveuser(ActiveUserIdValue);
+
+        const fetchUserData = async () => {
+          axios
+            .post(
+              "https://step-counter-dashboard.vercel.app/api/dynamic/singleUser",
+              {
+                activeUserId: ActiveUserIdValue,
+              }
+            )
+            .then((acc) => {
+              // console.log(acc.data);
+              setUserData(acc.data);
+              setGoal(acc.data[0].Goal);
+              setCurrentWallate(acc.data[0].wallate)
+            })
+            .catch((err) => {
+              console.log(err);
+            });
+        };
+
+        fetchUserData();
+      } catch (e) {
+        console.log(e);
+      }
+    };
+
+    getUserData();
   }, []);
 
   const subscribe = () => {
@@ -85,6 +124,10 @@ const HomeScreen = () => {
 
   let cal = DistanceCovered * 60;
   let Calories = cal.toFixed(2);
+
+  if (stepcounter == goal) {
+    console.log("add one more coin");
+  }
 
   return (
     <ScrollView style={styles.backall}>
@@ -137,8 +180,8 @@ const HomeScreen = () => {
           </TouchableOpacity>
         </View>
       </Modal>
-      <TopHeader  />
-      <Timer stepValue={stepcounter} />
+      <TopHeader />
+      <Timer activeuserid={activeUser} curWalleteStatus={currentWallate} goalValue={goal} stepValue={stepcounter} />
       <Items steps={stepcounter} calory={Calories} distance={DistanceCovered} />
       <CoinsEarned />
       <Past7Days />

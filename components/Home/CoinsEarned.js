@@ -16,7 +16,7 @@ const CoinsEarned = () => {
 
         const fetchUserData = async () => {
           axios
-            .post("http://192.168.43.53:3000/api/dynamic/singleUser", {
+            .post("https://step-counter-dashboard.vercel.app/api/dynamic/singleUser", {
               activeUserId: ActiveUserIdValue,
             })
             .then((acc) => {

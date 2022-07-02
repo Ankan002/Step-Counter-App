@@ -1,18 +1,40 @@
-import { View, Text } from "react-native";
+import { View, Text, Alert } from "react-native";
 import React from "react";
 import CircularProgress from "react-native-circular-progress-indicator";
 import { Center } from "native-base";
+import axios from "axios";
 const Timer = (props) => {
-  const handleCompleted = () => {
-    console.log("completed");
-    // alert("completed");
-  };
+  let crWallete = props.curWalleteStatus;
+  console.log(crWallete);
+
+  console.log(props.activeuserid);
+
+  if (props.stepValue > props.goalValue) {
+    let finalCurrentWallete = crWallete + 2;
+
+    console.log(finalCurrentWallete);
+    axios
+      .post(
+        "https://step-counter-dashboard.vercel.app/api/dynamic/increaseWallete",
+        {
+          wallateValue: finalCurrentWallete,
+          userid: props.activeuserid,
+        }
+      )
+      .then((acc) => {
+        console.log("wallete updated");
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
+
   return (
     <View>
       <Center style={{ marginTop: 20 }}>
         <CircularProgress
           value={props.stepValue}
-          maxValue={200}
+          maxValue={props.goalValue ? props.goalValue : 5000}
           radius={100}
           titleColor="white"
           activeStrokeColor="#00DCFF"
@@ -20,7 +42,6 @@ const Timer = (props) => {
           inActiveStrokeOpacity={0.5}
           inActiveStrokeWidth={20}
           activeStrokeWidth={20}
-          onAnimationComplete={handleCompleted}
         />
       </Center>
     </View>
