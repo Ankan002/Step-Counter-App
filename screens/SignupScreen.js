@@ -49,7 +49,7 @@ const SignupScreen = () => {
         };
         storeData();
 
-        navigation.replace("ActivateAccount");
+        navigation.navigate("ActivateAccount");
       })
       .catch((err) => {
         setIsloading(false);

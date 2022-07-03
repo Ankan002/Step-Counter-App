@@ -43,7 +43,7 @@ const LoginScreen = () => {
         };
         storeData();
 
-        navigation.replace("ActivateAccount");
+        navigation.navigate("ActivateAccount");
       })
       .catch((err) => {
         setIsloading(false);

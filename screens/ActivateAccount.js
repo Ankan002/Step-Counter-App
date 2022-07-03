@@ -1,72 +1,99 @@
 import { View, Text, TextInput, TouchableOpacity } from "react-native";
-import React,{useState,useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import styles from "../styles/globalcss";
 import Ionicons from "react-native-vector-icons/Ionicons";
 import { useNavigation } from "@react-navigation/native";
 import { Image, Center } from "native-base";
-import AsyncStorage from '@react-native-async-storage/async-storage';
-
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import axios from "axios";
 
 const ActivateAccount = () => {
   const navigation = useNavigation();
-
+  const [currentActivationCode, setCurrentActivationCode] = useState();
+  const [userInputActivationCode, setUserInputActivationCode] = useState();
+  const [message, setMessage] = useState("");
+  const [userCurrentId, setUserCurrentId] = useState();
 
   useEffect(() => {
     const getData = async () => {
       try {
         const value = await AsyncStorage.getItem("skipActivate");
-        console.log(value);
-        if(value){
-          navigation.replace("EnterReferalCode")
-
+        // console.log(value);
+        if (value) {
+          navigation.replace("EnterReferalCode");
         }
-
-
-
-
-        
       } catch (e) {
         console.log(e);
       }
     };
 
     getData();
+
+    const getCurrentUserData = async () => {
+      try {
+        const value = await AsyncStorage.getItem("jwt");
+
+        let parsedValue = JSON.parse(value);
+
+        
+        let cuurentId = parsedValue._id
+        
+        console.log(cuurentId)
+       
+      
+        axios.post("https://step-counter-dashboard.vercel.app/api/dynamic/singleUser",{
+          activeUserId:cuurentId
+      
+        }).then((acc)=>{
+          console.log(acc.data)
+          setCurrentActivationCode(acc.data[0].activationKey)
+        }).catch((err)=>{
+          console.log(err)
+        })
+       
+        
+
+        // console.log(ActivationCode);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    getCurrentUserData();
   }, []);
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   const handleActivate = async () => {
-
-    try {
-      await AsyncStorage.setItem('skipActivate', 'skipActivateSection')
-    } catch (e) {
-     console.log(e)
-    }
-    navigation.replace("EnterReferalCode")
-
-  }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    if (
+      currentActivationCode === userInputActivationCode.userInputActivationCode
+    ) {
+      console.log("aao andar");
+      try {
+        await AsyncStorage.setItem("skipActivate", "skipActivateSection");
+      } catch (e) {
+        console.log(e);
+      }
+      navigation.replace("EnterReferalCode");
+    } else setMessage("Activation Code Is Wrong");
+  };
 
   return (
     <View style={styles.backall}>
@@ -123,11 +150,29 @@ const ActivateAccount = () => {
           Your Account Has Been {"\n"}Created But We Need To{"\n"}{" "}
           <Text style={{ color: "#00DCFF" }}> Verify Your Account.</Text>
         </Text>
+
+        <Text
+          style={{
+            color: "#00DCFF",
+            textAlign: "center",
+            marginTop: 15,
+            fontWeight: "bold",
+          }}
+        >
+          {message}
+        </Text>
+
         <View style={{ marginHorizontal: 30, marginTop: 30 }}>
           <Text style={{ color: "white", marginLeft: 10, marginTop: 5 }}>
             Enter Activation Code
           </Text>
-          <TextInput keyboardType="default" style={styles.input} />
+          <TextInput
+            onChangeText={(text) => {
+              setUserInputActivationCode({ userInputActivationCode: text });
+            }}
+            keyboardType="default"
+            style={styles.input}
+          />
 
           <TouchableOpacity
             onPress={handleActivate}

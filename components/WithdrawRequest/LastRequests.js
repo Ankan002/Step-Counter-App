@@ -10,7 +10,7 @@ const LastRequests = (props) => {
 
   const getRequestData = () => {
     axios
-      .post("http://192.168.43.53:3000/api/GetWithdrawRequest", {
+      .post("https://step-counter-dashboard.vercel.app/api/GetWithdrawRequest", {
         userUniqueId: props.userId,
       })
       .then((acc) => {

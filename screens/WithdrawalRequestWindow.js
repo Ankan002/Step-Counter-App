@@ -64,7 +64,7 @@ const WithdrawalRequestWindow = () => {
     setIsLoading(true);
 
     axios
-      .post("http://192.168.43.53:3000/api/WithdrawRequest", {
+      .post("https://step-counter-dashboard.vercel.app/api/WithdrawRequest", {
         userUniqueId: activeuser,
         WithdrawCoins: coinsCount.coinsCount,
         ActivationCode: activationCode,
