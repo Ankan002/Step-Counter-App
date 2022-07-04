@@ -16,6 +16,7 @@ import EditProfile from "../components/Profile/EditProfile";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import axios from "axios";
 import { DevSettings } from "react-native";
+import ReferalCode from "../components/Profile/ReferalCode";
 
 const Profile = () => {
   const navigation = useNavigation();
@@ -479,6 +480,9 @@ const Profile = () => {
                 </View>
               </View>
 
+
+              <ReferalCode activeUserData={userData} currentUser={activeuser} />
+
               <View
                 style={{
                   marginHorizontal: 100,
@@ -511,6 +515,7 @@ const Profile = () => {
           )}
         </>
       )}
+
     </ScrollView>
   );
 };
