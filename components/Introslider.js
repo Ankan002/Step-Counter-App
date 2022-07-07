@@ -1,4 +1,4 @@
-import React, { useState ,useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import {
   SafeAreaView,
@@ -18,54 +18,39 @@ const Introslider = () => {
   const navigation = useNavigation();
   const [showthiscreen, setShowthiscreen] = useState(false);
 
-
-
-
   useEffect(() => {
-    const getData = async () => {
+    const ClientStatus = async () => {
       try {
-        const value = await AsyncStorage.getItem("jwt");
-        console.log(value);
-        if(value){
-          navigation.replace("ActivateAccount")
+        const ActiveUserIdValue = await AsyncStorage.getItem(
+          "ReachedAtHomeScreen"
+        );
 
+        if (ActiveUserIdValue === null) {
+          getData();
+        } else if (ActiveUserIdValue === "YES") {
+          navigation.replace("Home");
         }
-
-
-
-
-        
       } catch (e) {
         console.log(e);
       }
     };
 
-    getData();
-    setShowthiscreen(true)
+    ClientStatus();
+
+    const getData = async () => {
+      try {
+        const value = await AsyncStorage.getItem("jwt");
+        console.log(value);
+        if (value) {
+          navigation.replace("ActivateAccount");
+        }
+      } catch (e) {
+        console.log(e);
+      }
+    };
+
+    setShowthiscreen(true);
   }, []);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
   const onDone = () => {
     setShowRealApp(true);
@@ -120,7 +105,9 @@ const Introslider = () => {
                 onPress={() => navigation.replace("Signup")}
                 style={styles.button2}
               >
-                <Text style={{ textAlign: "center" ,color:"white"}}>Sign Up</Text>
+                <Text style={{ textAlign: "center", color: "white" }}>
+                  Sign Up
+                </Text>
               </TouchableOpacity>
             </View>
           </View>
@@ -181,7 +168,7 @@ const styles = StyleSheet.create({
     color: "white",
     textAlign: "center",
     paddingVertical: 30,
-    fontWeight:"bold"
+    fontWeight: "bold",
   },
   introTitleStyle: {
     fontSize: 25,

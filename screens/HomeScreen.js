@@ -33,6 +33,8 @@ const HomeScreen = () => {
   const navigation = useNavigation();
 
   useEffect(() => {
+    ReachedAtHomeScreen();
+
     // removeAll()
     subscribe();
 
@@ -119,6 +121,7 @@ const HomeScreen = () => {
     await AsyncStorage.removeItem("skipReferal");
     await AsyncStorage.removeItem("skipPricing");
     await AsyncStorage.removeItem("ActiveUserId");
+    await AsyncStorage.removeItem("ReachedAtHomeScreen");
   };
 
   // This is counting the distance
@@ -136,6 +139,14 @@ const HomeScreen = () => {
 
   const handleRequestWithdrawal = () => {
     navigation.navigate("WithdrawalRequestWindow");
+  };
+
+  const ReachedAtHomeScreen = async () => {
+    try {
+      await AsyncStorage.setItem("ReachedAtHomeScreen", "YES");
+    } catch (e) {
+      console.log(e);
+    }
   };
 
   return (
