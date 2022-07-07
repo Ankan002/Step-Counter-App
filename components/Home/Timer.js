@@ -37,7 +37,7 @@ const Timer = (props) => {
           maxValue={props.goalValue ? props.goalValue : 5000}
           radius={100}
           titleColor="white"
-          activeStrokeColor="#00DCFF"
+          activeStrokeColor="#FE0097"
           inActiveStrokeColor="white"
           inActiveStrokeOpacity={0.5}
           inActiveStrokeWidth={20}

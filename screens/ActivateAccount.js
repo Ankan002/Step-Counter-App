@@ -148,7 +148,7 @@ const ActivateAccount = () => {
           }}
         >
           Your Account Has Been {"\n"}Created But We Need To{"\n"}{" "}
-          <Text style={{ color: "#00DCFF" }}> Verify Your Account.</Text>
+          <Text style={{ color: "#FE0097" }}> Verify Your Account.</Text>
         </Text>
 
         <Text
@@ -183,10 +183,9 @@ const ActivateAccount = () => {
               style={{
                 color: "white",
                 textAlign: "center",
-                backgroundColor: "#00DCFF",
+                backgroundColor: "#FE0097",
                 padding: 10,
                 borderRadius: 10,
-                color: "black",
                 fontWeight: "bold",
                 width: "50%",
               }}

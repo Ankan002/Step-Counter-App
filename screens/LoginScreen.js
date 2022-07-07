@@ -4,7 +4,7 @@ import {
   TextInput,
   ScrollView,
   TouchableOpacity,
-  ActivityIndicator
+  ActivityIndicator,
 } from "react-native";
 import React, { useState, useEffect } from "react";
 import styles from "../styles/globalcss";
@@ -30,7 +30,7 @@ const LoginScreen = () => {
         password: password.password,
       })
       .then((acc) => {
-        console.log(acc.data)
+        console.log(acc.data);
 
         const stringifiedIt = JSON.stringify(acc.data);
 
@@ -43,7 +43,17 @@ const LoginScreen = () => {
         };
         storeData();
 
-        navigation.navigate("ActivateAccount");
+
+        if (acc.data.activationKey !== "none") {
+          navigation.navigate("Home")
+         
+        }else if(acc.data.activationKey === "none"){
+          navigation.navigate("ActivateAccount")
+        }
+
+
+
+        
       })
       .catch((err) => {
         setIsloading(false);
@@ -56,7 +66,6 @@ const LoginScreen = () => {
   return (
     <ScrollView style={styles.backall}>
       <BackPress name="Login" />
-
 
       <View style={{ marginTop: 80, marginHorizontal: 40 }}>
         <Text
@@ -93,64 +102,46 @@ const LoginScreen = () => {
           }}
         />
 
-
-        {
-
-          isloading  ? 
-
-
+        {isloading ? (
           <>
-          <View style={{ marginHorizontal: 40, marginTop: 20 }}>
-          
-            {/* <TouchableOpacity onPress={()=>navigation.navigate("ActivateAccount")}  > */}
-            <Text
-              style={{
-                color: "white",
-                textAlign: "center",
-                backgroundColor: "#00DCFF",
-                padding: 10,
-                borderRadius: 10,
-                color: "black",
-                fontWeight: "bold",
-              }}
-            >
-              <ActivityIndicator color="white" />
-            </Text>
-      
-        </View>
-
-
-
+            <View style={{ marginHorizontal: 40, marginTop: 20 }}>
+              {/* <TouchableOpacity onPress={()=>navigation.navigate("ActivateAccount")}  > */}
+              <Text
+                style={{
+                  color: "white",
+                  textAlign: "center",
+                  backgroundColor: "#00DCFF",
+                  padding: 10,
+                  borderRadius: 10,
+                  color: "black",
+                  fontWeight: "bold",
+                }}
+              >
+                <ActivityIndicator color="white" />
+              </Text>
+            </View>
           </>
-
-
-
-          :
-
-
+        ) : (
           <>
-
-        <View style={{ marginHorizontal: 40, marginTop: 20 }}>
-          <TouchableOpacity onPress={handleLogin}>
-            {/* <TouchableOpacity onPress={()=>navigation.navigate("ActivateAccount")}  > */}
-            <Text
-              style={{
-                color: "white",
-                textAlign: "center",
-                backgroundColor: "#00DCFF",
-                padding: 10,
-                borderRadius: 10,
-                color: "black",
-                fontWeight: "bold",
-              }}
-            >
-              Log In
-            </Text>
-          </TouchableOpacity>
-        </View>
-
+            <View style={{ marginHorizontal: 40, marginTop: 20 }}>
+              <TouchableOpacity onPress={handleLogin}>
+                {/* <TouchableOpacity onPress={()=>navigation.navigate("ActivateAccount")}  > */}
+                <Text
+                  style={{
+                    color: "white",
+                    textAlign: "center",
+                    backgroundColor: "#FE0097",
+                    padding: 10,
+                    borderRadius: 10,
+                    fontWeight: "bold",
+                  }}
+                >
+                  Log In
+                </Text>
+              </TouchableOpacity>
+            </View>
           </>
-        }
+        )}
 
         <TouchableOpacity onPress={() => navigation.navigate("ForgetPassword")}>
           <Text
@@ -174,7 +165,7 @@ const LoginScreen = () => {
 
         <Text style={{ color: "white", textAlign: "center", marginTop: 30 }}>
           By signing up you agree with our{"\n"}{" "}
-          <Text style={{ color: "#00DCFF" }}> terms & conditions </Text>
+          <Text style={{ color: "#FE0097" }}> terms & conditions </Text>
         </Text>
       </View>
     </ScrollView>

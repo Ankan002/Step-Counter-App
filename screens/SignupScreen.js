@@ -24,10 +24,14 @@ const SignupScreen = () => {
   const [isloading, setIsloading] = useState(false);
 
   const handleSignup = () => {
+    console.log("pressed")
     if (password.password !== repassword.repassword) {
       console.log("password dont match what you are doing");
     }
     setIsloading(true);
+
+
+    console.log(userName.userName,email.email,password.password)
 
     axios
       .post("https://step-counter-dashboard.vercel.app/api/Signup", {
@@ -137,10 +141,9 @@ const SignupScreen = () => {
                   style={{
                     color: "white",
                     textAlign: "center",
-                    backgroundColor: "#00DCFF",
+                    backgroundColor: "#FE0097",
                     padding: 10,
                     borderRadius: 10,
-                    color: "black",
                     fontWeight: "bold",
                   }}
                 >
@@ -172,7 +175,7 @@ const SignupScreen = () => {
           }}
         >
           By signing up you agree with our{"\n"}{" "}
-          <Text style={{ color: "#00DCFF" }}> terms & conditions </Text>
+          <Text style={{ color: "#FE0097" }}> terms & conditions </Text>
         </Text>
       </View>
     </ScrollView>

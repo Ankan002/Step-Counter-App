@@ -58,7 +58,7 @@ const CoinsEarned = () => {
                 borderRadius: 10,
               }}
             >
-              <Text style={{ color: "#00DCFF", fontWeight: "bold" }}>
+              <Text style={{ color: "#FE0097", fontWeight: "bold" }}>
                 {" "}
                 {userData[0].Goal}
               </Text>{" "}
@@ -75,7 +75,7 @@ const CoinsEarned = () => {
                 borderRadius: 10,
               }}
             >
-              <Text style={{ color: "#00DCFF", fontWeight: "bold" }}>
+              <Text style={{ color: "#FE0097", fontWeight: "bold" }}>
                 {userData[0].wallate}
               </Text>{" "}
               Total Wallet

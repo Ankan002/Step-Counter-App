@@ -259,10 +259,9 @@ const Profile = () => {
                     style={{
                       color: "white",
                       textAlign: "center",
-                      backgroundColor: "#00DCFF",
+                      backgroundColor: "#FE0097",
                       padding: 10,
                       borderRadius: 10,
-                      color: "black",
                       fontWeight: "bold",
                     }}
                   >
@@ -343,7 +342,7 @@ const Profile = () => {
                 >
                   {userData[0].username}
                   <TouchableOpacity onPress={() => setShowEdit(true)}>
-                    <Ionicons name="pencil" size={15} color="#00DCFF" />
+                    <Ionicons name="pencil" size={15} color="#FE0097" />
                   </TouchableOpacity>
                 </Text>
               </View>
@@ -361,7 +360,7 @@ const Profile = () => {
                 >
                   <Text style={{ color: "white", fontSize: 20 }}>Wallet</Text>
                   <Text
-                    style={{ color: "#00DCFF", fontSize: 18, marginTop: 5 }}
+                    style={{ color: "#FE0097", fontSize: 18, marginTop: 5 }}
                   >
                     {userData[0].wallate}
                   </Text>
@@ -378,7 +377,7 @@ const Profile = () => {
                 >
                   <Text style={{ color: "white", fontSize: 20 }}>Goal</Text>
                   <Text
-                    style={{ color: "#00DCFF", fontSize: 18, marginTop: 5 }}
+                    style={{ color: "#FE0097", fontSize: 18, marginTop: 5 }}
                   >
                     {userData[0].Goal}
                   </Text>
@@ -403,7 +402,7 @@ const Profile = () => {
                 >
                   <Text
                     style={{
-                      color: "#00DCFF",
+                      color: "#FE0097",
                       flex: 2,
                       textAlign: "center",
                       backgroundColor: "#121212",
@@ -417,7 +416,7 @@ const Profile = () => {
                   </Text>
                   <Text
                     style={{
-                      color: "#00DCFF",
+                      color: "#FE0097",
                       flex: 2,
                       textAlign: "center",
                       backgroundColor: "#121212",
@@ -450,7 +449,7 @@ const Profile = () => {
                 >
                   <Text
                     style={{
-                      color: "#00DCFF",
+                      color: "#FE0097",
                       flex: 2,
                       textAlign: "center",
                       backgroundColor: "#121212",
@@ -464,7 +463,7 @@ const Profile = () => {
                   </Text>
                   <Text
                     style={{
-                      color: "#00DCFF",
+                      color: "#FE0097",
                       flex: 2,
                       textAlign: "center",
                       backgroundColor: "#121212",
@@ -493,7 +492,7 @@ const Profile = () => {
                 <TouchableOpacity onPress={handleLogout}>
                   <Text
                     style={{
-                      color: "#00DCFF",
+                      color: "#FE0097",
                       textAlign: "center",
                       backgroundColor: "#121212",
                       padding: 10,
@@ -503,7 +502,7 @@ const Profile = () => {
                     }}
                   >
                     Logout{" "}
-                    <MaterialIcons name="logout" size={10} color="#00DCFF" />
+                    <MaterialIcons name="logout" size={10} color="#FE0097" />
                   </Text>
                 </TouchableOpacity>
               </View>

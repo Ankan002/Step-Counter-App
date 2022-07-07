@@ -76,7 +76,7 @@ const Dashboard = () => {
         >
           <Text
             style={{
-              color: "#00DCFF",
+              color: "#FE0097",
               flex: 2,
               textAlign: "center",
               backgroundColor: "#121212",
@@ -90,7 +90,7 @@ const Dashboard = () => {
           </Text>
           <Text
             style={{
-              color: "#00DCFF",
+              color: "#FE0097",
               flex: 2,
               textAlign: "center",
               backgroundColor: "#121212",

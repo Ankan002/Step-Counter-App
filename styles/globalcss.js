@@ -16,7 +16,7 @@ const styles = StyleSheet.create({
     margin: 12,
     borderWidth: 1,
     padding: 10,
-    borderBottomColor:"#00DCFF",
+    borderBottomColor:"#FE0097",
     color:"white",
   },
   tinyLogo: {

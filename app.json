@@ -1,10 +1,10 @@
 {
   "expo": {
-    "name": "Step Counter",
-    "slug": "stepcounter",
+    "name": "VRBLOCKS",
+    "slug": "vrblocks",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
+    "icon": "./assets/applogo.png",
     "userInterfaceStyle": "light",
     "splash": {
       "image": "./assets/splash.png",

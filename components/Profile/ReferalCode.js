@@ -50,7 +50,7 @@ const ReferalCode = (props) => {
           <Text
             style={{
               textAlign: "center",
-              color: "#00DCFF",
+              color: "#FE0097",
               fontWeight: "bold",
               marginTop: 30,
               fontSize: 20,
@@ -84,7 +84,7 @@ const ReferalCode = (props) => {
               <Text
                 style={{
                   textAlign: "center",
-                  color: "#00DCFF",
+                  color: "#FE0097",
                   fontWeight: "bold",
                   marginTop: 30,
                   fontSize: 20,
@@ -117,11 +117,13 @@ const ReferalCode = (props) => {
                 <TouchableOpacity onPress={handlePress}>
                   <Text
                     style={{
-                      backgroundColor: "#00DCFF",
+                      backgroundColor: "#FE0097",
                       textAlign: "center",
                       marginHorizontal: 80,
                       padding: 10,
                       borderRadius: 10,
+                      color:"white",
+                      fontWeight:"bold"
                     }}
                   >
                     Generate Code

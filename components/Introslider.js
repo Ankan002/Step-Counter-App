@@ -120,7 +120,7 @@ const Introslider = () => {
                 onPress={() => navigation.replace("Signup")}
                 style={styles.button2}
               >
-                <Text style={{ textAlign: "center" }}>Sign Up</Text>
+                <Text style={{ textAlign: "center" ,color:"white"}}>Sign Up</Text>
               </TouchableOpacity>
             </View>
           </View>
@@ -145,10 +145,10 @@ const styles = StyleSheet.create({
   },
   button2: {
     padding: 15,
-    borderColor: "#05DCFF",
+    borderColor: "#FE0097",
     borderWidth: 2,
     borderRadius: 10,
-    backgroundColor: "#05DCFF",
+    backgroundColor: "#FE0097",
     // margin:10,
     width: "50%",
     textAlign: "center",
@@ -210,23 +210,23 @@ const styles = StyleSheet.create({
 const slides = [
   {
     key: "s1",
-    text: "Walk To Get Rewards",
-    title: "Walk To Get Rewards",
+    text: "Walk & Earn Rewards",
+    title: "Walk & Earn Rewards",
     image: require("../assets/img/Banknot.png"),
     backgroundColor: "#000000",
   },
   {
     key: "s2",
-    title: "Walk For Your Health",
-    text: "Walk For Your Health",
+    title: "Get Fit Do Good",
+    text: "Get Fit Do Good",
     image: require("../assets/img/Coolness.png"),
 
     backgroundColor: "#000000",
   },
   {
     key: "s3",
-    title: "Walk To Earn Rewards",
-    text: "Walk To Earn Rewards",
+    title: "Walk more and earn VRBlock Tokens",
+    text: "Walk more and earn VRBlock Tokens",
     image: require("../assets/img/Walking.png"),
 
     backgroundColor: "#000000",

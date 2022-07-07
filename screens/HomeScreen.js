@@ -20,8 +20,7 @@ import axios from "axios";
 import WallateInfo from "../components/Dashboard/WallateInfo";
 import Dashboard from "./Dashboard";
 import Withdrawn from "./Withdrawn";
-import { useNavigation } from '@react-navigation/native';
-
+import { useNavigation } from "@react-navigation/native";
 
 const HomeScreen = () => {
   const [pedometerAvalibility, setPedometerAvalibility] = useState("");
@@ -32,7 +31,6 @@ const HomeScreen = () => {
   const [currentWallate, setCurrentWallate] = useState();
   const [activeUser, setActiveuser] = useState();
   const navigation = useNavigation();
-
 
   useEffect(() => {
     // removeAll()
@@ -136,22 +134,9 @@ const HomeScreen = () => {
     console.log("add one more coin");
   }
 
-
-
-  const handleRequestWithdrawal = () =>{
-    navigation.navigate("WithdrawalRequestWindow")
-  }
-
-
-
-
-
-
-
-
-
-
-
+  const handleRequestWithdrawal = () => {
+    navigation.navigate("WithdrawalRequestWindow");
+  };
 
   return (
     <ScrollView style={styles.backall}>
@@ -221,14 +206,16 @@ const HomeScreen = () => {
       <Dashboard />
 
       <View style={{ marginTop: 15, marginBottom: 20 }}>
-        <TouchableOpacity  onPress={handleRequestWithdrawal}>
+        <TouchableOpacity onPress={handleRequestWithdrawal}>
           <Text
             style={{
-              backgroundColor: "#00DCFF",
+              backgroundColor: "#FE0097",
               textAlign: "center",
               marginHorizontal: 80,
               padding: 10,
               borderRadius: 10,
+              color: "white",
+              fontWeight: "bold",
             }}
           >
             Request Withdrawal

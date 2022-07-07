@@ -168,11 +168,12 @@ const WithdrawalRequestWindow = () => {
                   <TouchableOpacity onPress={handleSend}>
                     <Text
                       style={{
-                        backgroundColor: "#00DCFF",
+                        backgroundColor: "#FE0097",
                         textAlign: "center",
                         marginHorizontal: 80,
                         padding: 10,
                         borderRadius: 10,
+                        color:"white"
                       }}
                     >
                       Send Requests
