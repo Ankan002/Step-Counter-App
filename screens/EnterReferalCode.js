@@ -29,7 +29,7 @@ const EnterReferalCode = () => {
     console.log(referalCodeEntered.referalCodeEntered);
 
     axios
-      .post("http://192.168.43.53:3000/api/Refer/FindReferalUser", {
+      .post("https://step-counter-dashboard.vercel.app/api/Refer/FindReferalUser", {
         referalId: referalCodeEntered.referalCodeEntered,
       })
       .then((acc) => {
@@ -53,7 +53,7 @@ const EnterReferalCode = () => {
     console.log(`Referal Buddy Reward Total Coin Is ${coin}`);
 
     axios
-      .post("http://192.168.43.53:3000/api/Refer/UpdateRewardCoin", {
+      .post("https://step-counter-dashboard.vercel.app/api/Refer/UpdateRewardCoin", {
         userid: id,
         coin: coin,
       })
