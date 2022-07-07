@@ -5,6 +5,7 @@ import {
   ScrollView,
   TouchableOpacity,
   ActivityIndicator,
+  ImageBackground
 } from "react-native";
 import React, { useState } from "react";
 import styles from "../styles/globalcss";
@@ -62,7 +63,9 @@ const SignupScreen = () => {
   };
 
   return (
-    <ScrollView style={styles.backall}>
+    <ImageBackground source={require('../assets/img/layoutBack.png')} resizeMode="cover" style={styles.image} >
+
+    <ScrollView >
       <BackPress name="Signup" />
       <Text style={{  color: "#00DCFF", textAlign: "center", marginTop: 10 }}>
         {message}
@@ -179,6 +182,7 @@ const SignupScreen = () => {
         </Text>
       </View>
     </ScrollView>
+    </ImageBackground>
   );
 };
 

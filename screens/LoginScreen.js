@@ -5,6 +5,7 @@ import {
   ScrollView,
   TouchableOpacity,
   ActivityIndicator,
+  ImageBackground
 } from "react-native";
 import React, { useState, useEffect } from "react";
 import styles from "../styles/globalcss";
@@ -64,7 +65,9 @@ const LoginScreen = () => {
   };
 
   return (
-    <ScrollView style={styles.backall}>
+    <ImageBackground source={require('../assets/img/layoutBack.png')} resizeMode="cover" style={styles.image} >
+
+    <ScrollView >
       <BackPress name="Login" />
 
       <View style={{ marginTop: 80, marginHorizontal: 40 }}>
@@ -169,6 +172,7 @@ const LoginScreen = () => {
         </Text>
       </View>
     </ScrollView>
+    </ImageBackground>
   );
 };
 

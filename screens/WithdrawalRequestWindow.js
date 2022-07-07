@@ -4,7 +4,8 @@ import {
   TextInput,
   TouchableOpacity,
   ActivityIndicator,
-  ScrollView
+  ScrollView,
+  ImageBackground
 } from "react-native";
 import React, { useState, useEffect } from "react";
 import Ionicons from "react-native-vector-icons/Ionicons";
@@ -81,7 +82,9 @@ const WithdrawalRequestWindow = () => {
   };
 
   return (
-    <ScrollView style={styles.backall}>
+    <ImageBackground source={require('../assets/img/layoutBack.png')} resizeMode="cover" style={styles.image} >
+
+    <ScrollView >
       <View
         style={{
           flexDirection: "row",
@@ -190,6 +193,8 @@ const WithdrawalRequestWindow = () => {
         <></>
       )}
     </ScrollView>
+    </ImageBackground>
+
   );
 };
 

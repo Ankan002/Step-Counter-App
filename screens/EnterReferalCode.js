@@ -1,4 +1,4 @@
-import { View, Text, TextInput, TouchableOpacity } from "react-native";
+import { View, Text, TextInput, TouchableOpacity,ImageBackground } from "react-native";
 import React, { useState, useEffect } from "react";
 import styles from "../styles/globalcss";
 import Ionicons from "react-native-vector-icons/Ionicons";
@@ -112,6 +112,9 @@ const EnterReferalCode = () => {
           Enter Referal Code
         </Text>
       </View>
+      <ImageBackground source={require('../assets/img/layoutBack.png')} resizeMode="cover" style={styles.image} >
+
+      
 
       <View style={{ marginHorizontal: 30, marginTop: 50 }}>
         <Text
@@ -170,6 +173,7 @@ const EnterReferalCode = () => {
           </Text>
         </TouchableOpacity>
       </View>
+      </ImageBackground>
     </View>
   );
 };

@@ -1,4 +1,4 @@
-import { View, Text, ScrollView } from "react-native";
+import { View, Text, ScrollView ,ImageBackground} from "react-native";
 import React, { useState, useEffect } from "react";
 import { useNavigation } from "@react-navigation/native";
 import Ionicons from "react-native-vector-icons/Ionicons";
@@ -42,7 +42,8 @@ const Notifications = () => {
   }, []);
 
   return (
-    <ScrollView style={styles.backall}>
+    <ImageBackground source={require('../assets/img/layoutBack.png')} resizeMode="cover" style={styles.image} >
+    <ScrollView >
       <View
         style={{ flexDirection: "row", marginTop: 35, marginHorizontal: 15 }}
       >
@@ -121,6 +122,8 @@ const Notifications = () => {
         </>
       )}
     </ScrollView>
+    </ImageBackground>
+
   );
 };
 

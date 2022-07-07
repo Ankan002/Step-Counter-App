@@ -21,7 +21,7 @@ const Dashboard = () => {
 
 
   return (
-    <ScrollView style={styles.backall}>
+    <ScrollView >
       {/* <View
         style={{
           flexDirection: "row",

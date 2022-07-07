@@ -1,5 +1,5 @@
 import 'react-native-gesture-handler';
-import { View, Text } from "react-native";
+import { View, Text ,} from "react-native";
 import React from "react";
 import Introslider from "./components/Introslider";
 import { NavigationContainer } from '@react-navigation/native';

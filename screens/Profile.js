@@ -4,6 +4,7 @@ import {
   ScrollView,
   TextInput,
   ActivityIndicator,
+  ImageBackground
 } from "react-native";
 import React, { useState, useEffect } from "react";
 import Ionicons from "react-native-vector-icons/Ionicons";
@@ -125,7 +126,9 @@ const Profile = () => {
   };
 
   return (
-    <ScrollView style={styles.backall}>
+     <ImageBackground source={require('../assets/img/layoutBack.png')} resizeMode="cover" style={styles.image} >
+    <ScrollView>
+
       {showEdit ? (
         <>
           <View
@@ -326,9 +329,7 @@ const Profile = () => {
                     size={100}
                     resizeMode={"contain"}
                     borderRadius={50}
-                    source={{
-                      uri: "https://cdn-icons-png.flaticon.com/512/219/219983.png",
-                    }}
+                    source={require('../assets/img/profileicon.png')}
                     alt="Alternate Text"
                   />
                 </Center>
@@ -517,6 +518,8 @@ const Profile = () => {
       )}
 
     </ScrollView>
+    </ImageBackground>
+
   );
 };
 

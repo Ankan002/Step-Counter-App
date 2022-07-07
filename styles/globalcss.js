@@ -26,5 +26,12 @@ const styles = StyleSheet.create({
    
 
   },
+  image:{
+    flex: 1,
+    justifyContent: "center",
+    backgroundColor:"black",
+    width:"100%",
+    
+  }
 });
 export default styles;

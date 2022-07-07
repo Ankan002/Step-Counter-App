@@ -1,4 +1,4 @@
-import { View, Text, TextInput, TouchableOpacity } from "react-native";
+import { View, Text, TextInput, TouchableOpacity ,ImageBackground} from "react-native";
 import React, { useState, useEffect } from "react";
 import styles from "../styles/globalcss";
 import Ionicons from "react-native-vector-icons/Ionicons";
@@ -96,7 +96,9 @@ const ActivateAccount = () => {
   };
 
   return (
-    <View style={styles.backall}>
+    <ImageBackground source={require('../assets/img/layoutBack.png')} resizeMode="cover" style={styles.image} >
+
+    <View >
       <View
         style={{ flexDirection: "row", marginTop: 35, marginHorizontal: 15 }}
       >
@@ -196,6 +198,7 @@ const ActivateAccount = () => {
         </View>
       </View>
     </View>
+    </ImageBackground>
   );
 };
 

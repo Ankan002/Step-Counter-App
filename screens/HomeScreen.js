@@ -211,6 +211,7 @@ const HomeScreen = () => {
       <CoinsEarned />
       {/* <Past7Days /> */}
 
+
       {/* other screens  */}
 
       {/* <WallateInfo/> */}

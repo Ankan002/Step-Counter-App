@@ -90,9 +90,7 @@ const TopHeader = () => {
           size={9}
           resizeMode={"contain"}
           borderRadius={100}
-          source={{
-            uri: "https://cdn-icons-png.flaticon.com/512/219/219983.png",
-          }}
+          source={require('../../assets/img/profileicon.png')}
           alt="Alternate Text"
         />
       </TouchableOpacity>
