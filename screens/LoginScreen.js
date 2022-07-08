@@ -74,7 +74,7 @@ const LoginScreen = () => {
         <Text
           style={{
             textAlign: "center",
-            color: "#00DCFF",
+            color: "#FE0097",
             marginBottom: 20,
             fontWeight: "bold",
           }}
@@ -113,7 +113,7 @@ const LoginScreen = () => {
                 style={{
                   color: "white",
                   textAlign: "center",
-                  backgroundColor: "#00DCFF",
+                  backgroundColor: "#FE0097",
                   padding: 10,
                   borderRadius: 10,
                   color: "black",

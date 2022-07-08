@@ -46,7 +46,7 @@ const ForgetPasswordScreen = () => {
           }}
         >
           Please Enter Your{"\n"}Account{" "}
-          <Text style={{ color: "#00DCFF" }}>Email Id</Text>
+          <Text style={{ color: "#FE0097" }}>Email Id</Text>
         </Text>
       </View>
 
@@ -64,7 +64,7 @@ const ForgetPasswordScreen = () => {
             style={{
               color: "white",
               textAlign: "center",
-              backgroundColor: "#00DCFF",
+              backgroundColor: "#FE0097",
               padding: 10,
               borderRadius: 10,
               color: "black",

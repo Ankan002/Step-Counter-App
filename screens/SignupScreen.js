@@ -67,7 +67,7 @@ const SignupScreen = () => {
 
     <ScrollView >
       <BackPress name="Signup" />
-      <Text style={{  color: "#00DCFF", textAlign: "center", marginTop: 10 }}>
+      <Text style={{  color: "#FE0097", textAlign: "center", marginTop: 10 }}>
         {message}
       </Text>
 
@@ -126,7 +126,7 @@ const SignupScreen = () => {
                   style={{
                     color: "white",
                     textAlign: "center",
-                    backgroundColor: "#00DCFF",
+                    backgroundColor: "#FE0097",
                     padding: 10,
                     borderRadius: 10,
                     color: "black",

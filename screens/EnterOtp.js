@@ -78,7 +78,7 @@ const EnterOtp = () => {
               style={{
                 color: "white",
                 textAlign: "center",
-                backgroundColor: "#00DCFF",
+                backgroundColor: "#FE0097",
                 padding: 10,
                 borderRadius: 10,
                 color: "black",
@@ -132,10 +132,10 @@ const EnterOtp = () => {
                 fontWeight: "bold",
               }}
             >
-              <Text style={{ color: "#00DCFF" }}>OTP</Text> Has Been Sent On{" "}
-              <Text style={{ color: "#00DCFF" }}>ku********@gmail.com</Text>
+              <Text style={{ color: "#FE0097" }}>OTP</Text> Has Been Sent On{" "}
+              <Text style={{ color: "#FE0097" }}>ku********@gmail.com</Text>
               {/* Please Enter Your{"\n"}Account{" "}
-          <Text style={{ color: "#00DCFF" }}>Email Id</Text> */}
+          <Text style={{ color: "#FE0097" }}>Email Id</Text> */}
             </Text>
           </View>
 
@@ -158,7 +158,7 @@ const EnterOtp = () => {
               style={{
                 color: "white",
                 textAlign: "center",
-                backgroundColor: "#00DCFF",
+                backgroundColor: "#FE0097",
                 padding: 10,
                 borderRadius: 10,
                 color: "black",

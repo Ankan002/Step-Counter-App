@@ -1,4 +1,10 @@
-import { View, Text, TouchableOpacity, ScrollView ,ImageBackground} from "react-native";
+import {
+  View,
+  Text,
+  TouchableOpacity,
+  ScrollView,
+  ImageBackground,
+} from "react-native";
 import React, { useState, useEffect } from "react";
 import styles from "../styles/globalcss";
 import { useNavigation } from "@react-navigation/native";
@@ -32,10 +38,12 @@ const PricingScreen = () => {
     navigation.replace("Home");
   };
 
-
-
   return (
-    <ImageBackground source={require('../assets/img/layoutBack.png')} resizeMode="cover" style={styles.image} >
+    <ImageBackground
+      source={require("../assets/img/layoutBack.png")}
+      resizeMode="cover"
+      style={styles.image}
+    >
       <View
         style={{ flexDirection: "row", marginTop: 35, marginHorizontal: 15 }}
       >
@@ -54,16 +62,21 @@ const PricingScreen = () => {
         </Text>
       </View>
 
-      <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
-        <View style={{ marginHorizontal: 20, marginTop: 30 }}>
+      <ScrollView
+        showsHorizontalScrollIndicator={false}
+        style={{ marginTop: 20 }}
+        horizontal={true}
+      >
+        <View style={{ marginLeft: 50 }}>
           <View
             style={{
               backgroundColor: "#FE0097",
               width: "100%",
-              height: "70%",
-              borderRadius: 20,
-              borderColor:"white",
-              borderWidth:1
+              height: "auto",
+              padding: 20,
+              borderRadius: 10,
+              borderColor: "white",
+              borderWidth: 1,
             }}
           >
             <Text
@@ -160,15 +173,18 @@ const PricingScreen = () => {
           </View>
         </View>
 
-        <View style={{ marginHorizontal: 40, marginTop: 30 }}>
+
+
+        <View style={{ marginLeft: 50 }}>
           <View
             style={{
               backgroundColor: "#FE0097",
               width: "100%",
-              height: "70%",
-              borderRadius: 20,
-              borderColor:"white",
-              borderWidth:1
+              height: "auto",
+              padding: 20,
+              borderRadius: 10,
+              borderColor: "white",
+              borderWidth: 1,
             }}
           >
             <Text
@@ -231,6 +247,7 @@ const PricingScreen = () => {
               <Text>{"\u2B24"}</Text>
               <Text style={{ marginLeft: 10 }}>Instant Approval</Text>
             </View>
+
             <View
               style={{
                 flexDirection: "row",
@@ -264,15 +281,25 @@ const PricingScreen = () => {
           </View>
         </View>
 
-        <View style={{ marginHorizontal: 40, marginTop: 30 }}>
+
+
+
+
+
+
+
+
+
+        <View style={{ marginLeft: 50 }}>
           <View
             style={{
               backgroundColor: "#FE0097",
               width: "100%",
-              height: "70%",
-              borderRadius: 20,
-              borderColor:"white",
-              borderWidth:1
+              height: "auto",
+              padding: 20,
+              borderRadius: 10,
+              borderColor: "white",
+              borderWidth: 1,
             }}
           >
             <Text
@@ -335,6 +362,7 @@ const PricingScreen = () => {
               <Text>{"\u2B24"}</Text>
               <Text style={{ marginLeft: 10 }}>Instant Approval</Text>
             </View>
+
             <View
               style={{
                 flexDirection: "row",
@@ -368,15 +396,18 @@ const PricingScreen = () => {
           </View>
         </View>
 
-        <View style={{ marginHorizontal: 40, marginTop: 30 }}>
+
+
+        <View style={{ marginLeft: 50, marginRight: 50 }}>
           <View
             style={{
               backgroundColor: "#FE0097",
               width: "100%",
-              height: "70%",
-              borderRadius: 20,
-              borderColor:"white",
-              borderWidth:1
+              height: "auto",
+              padding: 20,
+              borderRadius: 10,
+              borderColor: "white",
+              borderWidth: 1,
             }}
           >
             <Text

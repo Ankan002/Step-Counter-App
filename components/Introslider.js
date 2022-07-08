@@ -78,6 +78,9 @@ const Introslider = () => {
   };
 
   return (
+   
+   
+
     <>
       {showRealApp ? (
         <LoginScreen />
@@ -212,8 +215,8 @@ const slides = [
   },
   {
     key: "s3",
-    title: "Walk more and earn VRBlock Tokens",
-    text: "Walk more and earn VRBlock Tokens",
+    title: "Walk more and earn VRBLOCK Tokens",
+    text: "Walk more and earn VRBLOCK Tokens",
     image: require("../assets/img/Walking.png"),
 
     backgroundColor: "#000000",
