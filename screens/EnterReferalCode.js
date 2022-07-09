@@ -120,7 +120,7 @@ const EnterReferalCode = () => {
         <Text
           style={{
             textAlign: "center",
-            color: "#00DCFF",
+            color: "white",
             fontSize: 20,
             fontWeight: "bold",
           }}
