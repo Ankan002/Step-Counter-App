@@ -41,10 +41,7 @@ const HomeScreen = () => {
     const getData = async () => {
       try {
         const value = await AsyncStorage.getItem("jwt");
-        // console.log(value);
-
         let parsedValue = JSON.parse(value);
-
         let userId = parsedValue._id;
         setShowvalue(parsedValue);
 

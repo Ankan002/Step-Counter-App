@@ -32,6 +32,30 @@ const styles = StyleSheet.create({
     backgroundColor:"black",
     width:"100%",
     
-  }
+  },
+  PaymentDo: {
+    width: 120,
+    height: 120,
+    marginTop:10,
+    alignSelf:"center"
+   
+
+  },
+  ProceedButton:{
+    backgroundColor:"white",
+    textAlign:"center",
+    marginHorizontal:80,
+    padding:5,
+    fontSize:15,
+    borderRadius:10
+  },
+  infoIcon: {
+    width: 120,
+    height: 100,
+    marginTop:10,
+    alignSelf:"center"
+   
+
+  },
 });
 export default styles;

@@ -57,7 +57,7 @@ const ActivateAccount = () => {
   const handleActivate = async () => {
     axios
       .post(
-        "http://192.168.43.53:3000/api/ActivationCode/FindOneActivationCode",
+        "https://step-counter-dashboard.vercel.app/api/ActivationCode/FindOneActivationCode",
         {
           userActivationCode: userInputActivationCode.userInputActivationCode,
         }
@@ -94,7 +94,7 @@ const ActivateAccount = () => {
 
     axios
       .delete(
-        "http://192.168.43.53:3000/api/ActivationCode/CreateNewActivationCode",
+        "https://step-counter-dashboard.vercel.app/api/ActivationCode/CreateNewActivationCode",
         {
           data: { id: thatActivationCode },
         }

@@ -89,6 +89,7 @@ const Profile = () => {
       await AsyncStorage.removeItem("skipPricing");
       await AsyncStorage.removeItem("ActiveUserId");
       await AsyncStorage.removeItem("ReachedAtHomeScreen");
+      await AsyncStorage.removeItem("Waiting");
       DevSettings.reload();
     };
 

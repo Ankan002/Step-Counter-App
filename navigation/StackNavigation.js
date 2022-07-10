@@ -14,6 +14,9 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useEffect, useState } from "react";
 import Profile from "../screens/Profile";
 import WithdrawalRequestWindow from "../screens/WithdrawalRequestWindow";
+import DoPayment from "../screens/DoPayment";
+import VerifyPayment from "../screens/VerifyPayment";
+import WaitingForConfirmation from "../screens/WaitingForConfirmation";
 
 
 const Stack = createStackNavigator();
@@ -40,6 +43,9 @@ const StackNavigator = () => {
       <Stack.Screen name="Notifications" component={Notifications} />
       <Stack.Screen name="Profile" component={Profile} />
       <Stack.Screen name="WithdrawalRequestWindow" component={WithdrawalRequestWindow} />
+      <Stack.Screen name="DoPayment" component={DoPayment} />
+      <Stack.Screen name="VerifyPayment" component={VerifyPayment} />
+      <Stack.Screen name="WaitingForConfirmation" component={WaitingForConfirmation} />
     </Stack.Navigator>
   );
 };

@@ -19,6 +19,17 @@ const Introslider = () => {
   const [showthiscreen, setShowthiscreen] = useState(false);
 
   useEffect(() => {
+    const removeAll = async () => {
+      await AsyncStorage.removeItem("jwt");
+      await AsyncStorage.removeItem("skipActivate");
+      await AsyncStorage.removeItem("skipReferal");
+      await AsyncStorage.removeItem("skipPricing");
+      await AsyncStorage.removeItem("ActiveUserId");
+      await AsyncStorage.removeItem("ReachedAtHomeScreen");
+      await AsyncStorage.removeItem("Waiting");
+    };
+
+    // removeAll()
     const ClientStatus = async () => {
       try {
         const ActiveUserIdValue = await AsyncStorage.getItem(
@@ -50,6 +61,18 @@ const Introslider = () => {
     };
 
     setShowthiscreen(true);
+
+
+
+    
+
+
+    
+
+
+
+
+
   }, []);
 
   const onDone = () => {

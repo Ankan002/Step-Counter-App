@@ -44,13 +44,19 @@ const LoginScreen = () => {
         };
         storeData();
 
+        
+
+        if (acc.data.role === "subscribed") {
+          navigation.navigate("Home")          
+        }
 
         if (acc.data.activationKey !== "none") {
-          navigation.navigate("Home")
+          navigation.navigate("PricingScreen")
          
-        }else if(acc.data.activationKey === "none"){
-          navigation.navigate("ActivateAccount")
         }
+        // else if(acc.data.activationKey === "none"){
+        //   navigation.navigate("ActivateAccount")
+        // }
 
 
 

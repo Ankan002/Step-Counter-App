@@ -27,15 +27,26 @@ const PricingScreen = () => {
     };
 
     getData();
+
+    const getCurrentPricingStatus = async () => {
+      const waiting = await AsyncStorage.getItem("Waiting");
+      console.log(waiting);
+
+      if (waiting) {
+        navigation.navigate("WaitingForConfirmation");
+      }
+    };
+    getCurrentPricingStatus();
   }, []);
 
   const handleProceed = async () => {
-    try {
-      await AsyncStorage.setItem("skipPricing", "skipPricingSection");
-    } catch (e) {
-      console.log(e);
-    }
-    navigation.replace("Home");
+    navigation.navigate("DoPayment");
+    // try {
+    //   await AsyncStorage.setItem("skipPricing", "skipPricingSection");
+    // } catch (e) {
+    //   console.log(e);
+    // }
+    // navigation.replace("Home");
   };
 
   return (
@@ -173,8 +184,6 @@ const PricingScreen = () => {
           </View>
         </View>
 
-
-
         <View style={{ marginLeft: 50 }}>
           <View
             style={{
@@ -281,15 +290,6 @@ const PricingScreen = () => {
           </View>
         </View>
 
-
-
-
-
-
-
-
-
-
         <View style={{ marginLeft: 50 }}>
           <View
             style={{
@@ -395,8 +395,6 @@ const PricingScreen = () => {
             </TouchableOpacity>
           </View>
         </View>
-
-
 
         <View style={{ marginLeft: 50, marginRight: 50 }}>
           <View
