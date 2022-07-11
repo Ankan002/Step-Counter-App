@@ -66,7 +66,7 @@ const LoginScreen = () => {
         setIsloading(false);
 
         console.log(err.message);
-        setMessage("Email Or Password Is Wrong");
+        setMessage(err.response.data.error);
       });
   };
 

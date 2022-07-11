@@ -25,9 +25,20 @@ const SignupScreen = () => {
   const [isloading, setIsloading] = useState(false);
 
   const handleSignup = () => {
+
+
+   
+
+
+
+
+
+
+
+
     console.log("pressed")
     if (password.password !== repassword.repassword) {
-      console.log("password dont match what you are doing");
+      return setMessage("Both Passwords Don't Match");
     }
     setIsloading(true);
 
@@ -58,7 +69,8 @@ const SignupScreen = () => {
       })
       .catch((err) => {
         setIsloading(false);
-        return setMessage("Please Fill All The Fields Carefully");
+        // setMessage(err.error);
+        setMessage(err.response.data.error)
       });
   };
 
