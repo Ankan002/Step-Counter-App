@@ -4,14 +4,16 @@ import {
   TouchableOpacity,
   ScrollView,
   ImageBackground,
+  ActivityIndicator,
 } from "react-native";
 import React, { useState, useEffect } from "react";
 import styles from "../styles/globalcss";
 import { useNavigation } from "@react-navigation/native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-
+import axios from "axios";
 const PricingScreen = () => {
   const navigation = useNavigation();
+  const [datas, setDatas] = useState("");
 
   useEffect(() => {
     const getData = async () => {
@@ -37,6 +39,16 @@ const PricingScreen = () => {
       }
     };
     getCurrentPricingStatus();
+
+    axios
+      .get("https://step-counter-dashboard.vercel.app/api/Package/Packages")
+      .then((acc) => {
+        console.log(acc.data);
+        setDatas(acc.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   }, []);
 
   const handleProceed = async () => {
@@ -78,429 +90,137 @@ const PricingScreen = () => {
         style={{ marginTop: 20 }}
         horizontal={true}
       >
-        <View style={{ marginLeft: 50 }}>
-          <View
-            style={{
-              backgroundColor: "#FE0097",
-              width: "100%",
-              height: "auto",
-              padding: 20,
-              borderRadius: 10,
-              borderColor: "white",
-              borderWidth: 1,
-            }}
-          >
-            <Text
-              style={{
-                textAlign: "center",
-                marginTop: 20,
-                fontSize: 40,
-                fontWeight: "bold",
-              }}
-            >
-              Walk
-            </Text>
-            <Text
-              style={{ textAlign: "center", fontSize: 20, fontWeight: "bold" }}
-            >
-              200 VR BLOCKS
-            </Text>
+        {datas ? (
+          <>
+            {datas.map((hit) => {
+              return (
+                <View style={{ marginLeft: 50 }} key={hit._id}>
+                  <View
+                    style={{
+                      backgroundColor: "#FE0097",
+                      width: "100%",
+                      height: "auto",
+                      padding: 20,
+                      borderRadius: 10,
+                      borderColor: "white",
+                      borderWidth: 1,
+                    }}
+                  >
+                    <Text
+                      style={{
+                        textAlign: "center",
+                        marginTop: 20,
+                        fontSize: 40,
+                        fontWeight: "bold",
+                      }}
+                    >
+                      {hit.PackageName}
+                    </Text>
+                    <Text
+                      style={{
+                        textAlign: "center",
+                        fontSize: 20,
+                        fontWeight: "bold",
+                      }}
+                    >
+                      {hit.PackagePrice}
+                    </Text>
 
-            <View
-              style={{
-                flexDirection: "row",
-                marginHorizontal: 40,
-                justifyContent: "center",
-                marginTop: 10,
-              }}
-            >
-              <Text>{"\u2B24"}</Text>
-              <Text style={{ marginLeft: 10 }}>2$ Every Day</Text>
-            </View>
-            <View
-              style={{
-                flexDirection: "row",
-                marginHorizontal: 40,
-                justifyContent: "center",
-                marginTop: 10,
-              }}
-            >
-              <Text>{"\u2B24"}</Text>
-              <Text style={{ marginLeft: 10 }}>Valid For 1 Year</Text>
-            </View>
-            <View
-              style={{
-                flexDirection: "row",
-                marginHorizontal: 40,
-                justifyContent: "center",
-                marginTop: 10,
-              }}
-            >
-              <Text>{"\u2B24"}</Text>
-              <Text style={{ marginLeft: 10 }}>Withdraw Any Time</Text>
-            </View>
-            <View
-              style={{
-                flexDirection: "row",
-                marginHorizontal: 40,
-                justifyContent: "center",
-                marginTop: 10,
-              }}
-            >
-              <Text>{"\u2B24"}</Text>
-              <Text style={{ marginLeft: 10 }}>Instant Approval</Text>
-            </View>
+                    <View
+                      style={{
+                        flexDirection: "row",
+                        marginHorizontal: 40,
+                        justifyContent: "center",
+                        marginTop: 10,
+                      }}
+                    >
+                      <Text>{"\u2B24"}</Text>
+                      <Text style={{ marginLeft: 10 }}>
+                        {hit.EveryDayReward} Every Day
+                      </Text>
+                    </View>
+                    <View
+                      style={{
+                        flexDirection: "row",
+                        marginHorizontal: 40,
+                        justifyContent: "center",
+                        marginTop: 10,
+                      }}
+                    >
+                      <Text>{"\u2B24"}</Text>
+                      <Text style={{ marginLeft: 10 }}>
+                        Valid For {hit.PackagePeriod}
+                      </Text>
+                    </View>
+                    <View
+                      style={{
+                        flexDirection: "row",
+                        marginHorizontal: 40,
+                        justifyContent: "center",
+                        marginTop: 10,
+                      }}
+                    >
+                      <Text>{"\u2B24"}</Text>
+                      <Text style={{ marginLeft: 10 }}>Withdraw Any Time</Text>
+                    </View>
+                    <View
+                      style={{
+                        flexDirection: "row",
+                        marginHorizontal: 40,
+                        justifyContent: "center",
+                        marginTop: 10,
+                      }}
+                    >
+                      <Text>{"\u2B24"}</Text>
+                      <Text style={{ marginLeft: 10 }}>Instant Approval</Text>
+                    </View>
 
-            <View
-              style={{
-                flexDirection: "row",
-                marginHorizontal: 40,
-                justifyContent: "center",
-                marginTop: 10,
-              }}
-            >
-              <Text>{"\u2B24"}</Text>
-              <Text style={{ marginLeft: 10 }}>10000 Steps Goal</Text>
-            </View>
-            <TouchableOpacity
-              onPress={handleProceed}
-              style={{ alignItems: "center", marginTop: 20 }}
-            >
-              <Text
-                style={{
-                  color: "white",
-                  textAlign: "center",
-                  backgroundColor: "white",
-                  padding: 10,
-                  borderRadius: 10,
-                  color: "black",
-                  fontWeight: "bold",
-                  width: "50%",
-                }}
-              >
-                Proceed
-              </Text>
-            </TouchableOpacity>
+                    <View
+                      style={{
+                        flexDirection: "row",
+                        marginHorizontal: 40,
+                        justifyContent: "center",
+                        marginTop: 10,
+                      }}
+                    >
+                      <Text>{"\u2B24"}</Text>
+                      <Text style={{ marginLeft: 10 }}>
+                        {hit.StepsGoal} Steps Goal
+                      </Text>
+                    </View>
+                    <TouchableOpacity
+                      onPress={handleProceed}
+                      style={{ alignItems: "center", marginTop: 20 }}
+                    >
+                      <Text
+                        style={{
+                          color: "white",
+                          textAlign: "center",
+                          backgroundColor: "white",
+                          padding: 10,
+                          borderRadius: 10,
+                          color: "black",
+                          fontWeight: "bold",
+                          width: "50%",
+                        }}
+                      >
+                        Proceed
+                      </Text>
+                    </TouchableOpacity>
+                  </View>
+                </View>
+              );
+            })}
+          </>
+        ) : (
+          <View style={{ flex: 1, justifyContent: "center" }}>
+            <ActivityIndicator
+              size="large"
+              style={{ marginLeft: 150 }}
+              color="white"
+            />
           </View>
-        </View>
-
-        <View style={{ marginLeft: 50 }}>
-          <View
-            style={{
-              backgroundColor: "#FE0097",
-              width: "100%",
-              height: "auto",
-              padding: 20,
-              borderRadius: 10,
-              borderColor: "white",
-              borderWidth: 1,
-            }}
-          >
-            <Text
-              style={{
-                textAlign: "center",
-                marginTop: 20,
-                fontSize: 40,
-                fontWeight: "bold",
-              }}
-            >
-              Jogging
-            </Text>
-            <Text
-              style={{ textAlign: "center", fontSize: 20, fontWeight: "bold" }}
-            >
-              500 VR BLOCKS
-            </Text>
-
-            <View
-              style={{
-                flexDirection: "row",
-                marginHorizontal: 40,
-                justifyContent: "center",
-                marginTop: 10,
-              }}
-            >
-              <Text>{"\u2B24"}</Text>
-              <Text style={{ marginLeft: 10 }}>5$ Every Day</Text>
-            </View>
-            <View
-              style={{
-                flexDirection: "row",
-                marginHorizontal: 40,
-                justifyContent: "center",
-                marginTop: 10,
-              }}
-            >
-              <Text>{"\u2B24"}</Text>
-              <Text style={{ marginLeft: 10 }}>Valid For 1 Year</Text>
-            </View>
-            <View
-              style={{
-                flexDirection: "row",
-                marginHorizontal: 40,
-                justifyContent: "center",
-                marginTop: 10,
-              }}
-            >
-              <Text>{"\u2B24"}</Text>
-              <Text style={{ marginLeft: 10 }}>Withdraw Any Time</Text>
-            </View>
-            <View
-              style={{
-                flexDirection: "row",
-                marginHorizontal: 40,
-                justifyContent: "center",
-                marginTop: 10,
-              }}
-            >
-              <Text>{"\u2B24"}</Text>
-              <Text style={{ marginLeft: 10 }}>Instant Approval</Text>
-            </View>
-
-            <View
-              style={{
-                flexDirection: "row",
-                marginHorizontal: 40,
-                justifyContent: "center",
-                marginTop: 10,
-              }}
-            >
-              <Text>{"\u2B24"}</Text>
-              <Text style={{ marginLeft: 10 }}>20000 Steps Goal</Text>
-            </View>
-            <TouchableOpacity
-              onPress={handleProceed}
-              style={{ alignItems: "center", marginTop: 20 }}
-            >
-              <Text
-                style={{
-                  color: "white",
-                  textAlign: "center",
-                  backgroundColor: "white",
-                  padding: 10,
-                  borderRadius: 10,
-                  color: "black",
-                  fontWeight: "bold",
-                  width: "50%",
-                }}
-              >
-                Proceed
-              </Text>
-            </TouchableOpacity>
-          </View>
-        </View>
-
-        <View style={{ marginLeft: 50 }}>
-          <View
-            style={{
-              backgroundColor: "#FE0097",
-              width: "100%",
-              height: "auto",
-              padding: 20,
-              borderRadius: 10,
-              borderColor: "white",
-              borderWidth: 1,
-            }}
-          >
-            <Text
-              style={{
-                textAlign: "center",
-                marginTop: 20,
-                fontSize: 40,
-                fontWeight: "bold",
-              }}
-            >
-              Skipping
-            </Text>
-            <Text
-              style={{ textAlign: "center", fontSize: 20, fontWeight: "bold" }}
-            >
-              1000 VR BLOCKS
-            </Text>
-
-            <View
-              style={{
-                flexDirection: "row",
-                marginHorizontal: 40,
-                justifyContent: "center",
-                marginTop: 10,
-              }}
-            >
-              <Text>{"\u2B24"}</Text>
-              <Text style={{ marginLeft: 10 }}>8$ Every Day</Text>
-            </View>
-            <View
-              style={{
-                flexDirection: "row",
-                marginHorizontal: 40,
-                justifyContent: "center",
-                marginTop: 10,
-              }}
-            >
-              <Text>{"\u2B24"}</Text>
-              <Text style={{ marginLeft: 10 }}>Valid For 1 Year</Text>
-            </View>
-            <View
-              style={{
-                flexDirection: "row",
-                marginHorizontal: 40,
-                justifyContent: "center",
-                marginTop: 10,
-              }}
-            >
-              <Text>{"\u2B24"}</Text>
-              <Text style={{ marginLeft: 10 }}>Withdraw Any Time</Text>
-            </View>
-            <View
-              style={{
-                flexDirection: "row",
-                marginHorizontal: 40,
-                justifyContent: "center",
-                marginTop: 10,
-              }}
-            >
-              <Text>{"\u2B24"}</Text>
-              <Text style={{ marginLeft: 10 }}>Instant Approval</Text>
-            </View>
-
-            <View
-              style={{
-                flexDirection: "row",
-                marginHorizontal: 40,
-                justifyContent: "center",
-                marginTop: 10,
-              }}
-            >
-              <Text>{"\u2B24"}</Text>
-              <Text style={{ marginLeft: 10 }}>25000 Steps Goal</Text>
-            </View>
-            <TouchableOpacity
-              onPress={handleProceed}
-              style={{ alignItems: "center", marginTop: 20 }}
-            >
-              <Text
-                style={{
-                  color: "white",
-                  textAlign: "center",
-                  backgroundColor: "white",
-                  padding: 10,
-                  borderRadius: 10,
-                  color: "black",
-                  fontWeight: "bold",
-                  width: "50%",
-                }}
-              >
-                Proceed
-              </Text>
-            </TouchableOpacity>
-          </View>
-        </View>
-
-        <View style={{ marginLeft: 50, marginRight: 50 }}>
-          <View
-            style={{
-              backgroundColor: "#FE0097",
-              width: "100%",
-              height: "auto",
-              padding: 20,
-              borderRadius: 10,
-              borderColor: "white",
-              borderWidth: 1,
-            }}
-          >
-            <Text
-              style={{
-                textAlign: "center",
-                marginTop: 20,
-                fontSize: 40,
-                fontWeight: "bold",
-              }}
-            >
-              Run
-            </Text>
-            <Text
-              style={{ textAlign: "center", fontSize: 20, fontWeight: "bold" }}
-            >
-              2500 VR BLOCKS
-            </Text>
-
-            <View
-              style={{
-                flexDirection: "row",
-                marginHorizontal: 40,
-                justifyContent: "center",
-                marginTop: 10,
-              }}
-            >
-              <Text>{"\u2B24"}</Text>
-              <Text style={{ marginLeft: 10 }}>12$ Every Day</Text>
-            </View>
-            <View
-              style={{
-                flexDirection: "row",
-                marginHorizontal: 40,
-                justifyContent: "center",
-                marginTop: 10,
-              }}
-            >
-              <Text>{"\u2B24"}</Text>
-              <Text style={{ marginLeft: 10 }}>Valid For 1 Year</Text>
-            </View>
-            <View
-              style={{
-                flexDirection: "row",
-                marginHorizontal: 40,
-                justifyContent: "center",
-                marginTop: 10,
-              }}
-            >
-              <Text>{"\u2B24"}</Text>
-              <Text style={{ marginLeft: 10 }}>Withdraw Any Time</Text>
-            </View>
-            <View
-              style={{
-                flexDirection: "row",
-                marginHorizontal: 40,
-                justifyContent: "center",
-                marginTop: 10,
-              }}
-            >
-              <Text>{"\u2B24"}</Text>
-              <Text style={{ marginLeft: 10 }}>Instant Approval</Text>
-            </View>
-
-            <View
-              style={{
-                flexDirection: "row",
-                marginHorizontal: 40,
-                justifyContent: "center",
-                marginTop: 10,
-              }}
-            >
-              <Text>{"\u2B24"}</Text>
-              <Text style={{ marginLeft: 10 }}>35000 Steps Goal</Text>
-            </View>
-            <TouchableOpacity
-              onPress={handleProceed}
-              style={{ alignItems: "center", marginTop: 20 }}
-            >
-              <Text
-                style={{
-                  color: "white",
-                  textAlign: "center",
-                  backgroundColor: "white",
-                  padding: 10,
-                  borderRadius: 10,
-                  color: "black",
-                  fontWeight: "bold",
-                  width: "50%",
-                }}
-              >
-                Proceed
-              </Text>
-            </TouchableOpacity>
-          </View>
-        </View>
+        )}
       </ScrollView>
 
       <View style={{ marginHorizontal: 30 }}>
