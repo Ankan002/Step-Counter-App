@@ -65,7 +65,7 @@ const SignupScreen = () => {
         };
         storeData();
 
-        navigation.navigate("ActivateAccount");
+        navigation.replace("EnterReferalCode");
       })
       .catch((err) => {
         setIsloading(false);

@@ -53,7 +53,9 @@ const Introslider = () => {
         const value = await AsyncStorage.getItem("jwt");
         console.log(value);
         if (value) {
-          navigation.replace("ActivateAccount");
+          navigation.replace("EnterReferalCode");
+          // navigation.replace("ActivateAccount");
+
         }
       } catch (e) {
         console.log(e);
