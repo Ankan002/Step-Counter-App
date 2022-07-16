@@ -1,5 +1,11 @@
 import { StyleSheet } from "react-native";
 import React from "react";
+import {
+ 
+  Dimensions
+} from "react-native";
+const SCREEN_WIDTH = Dimensions.get("window").width;
+
 
 const styles = StyleSheet.create({
   backall: {
@@ -64,6 +70,14 @@ const styles = StyleSheet.create({
     alignSelf:"center"
    
 
+  },
+ 
+  screen: {
+    height: 600,
+    justifyContent: "center",
+    alignItems: "center",
+    borderRadius: 25,
+    backgroundColor: "white"
   },
 });
 export default styles;

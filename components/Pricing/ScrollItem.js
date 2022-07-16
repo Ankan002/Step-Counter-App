@@ -5,19 +5,20 @@ import {
   ScrollView,
   ImageBackground,
   ActivityIndicator,
-  Dimensions,
-  Animated,
   StyleSheet,
+  Animated,
+  Dimensions,
 } from "react-native";
 import React, { useState, useEffect } from "react";
-import styles from "../styles/globalcss";
+import styles from "../../styles/globalcss";
 import { useNavigation } from "@react-navigation/native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import axios from "axios";
 const SCREEN_WIDTH = Dimensions.get("window").width;
 const xOffset = new Animated.Value(0);
 
-const PricingScreen = () => {
+
+const PricingScreen = (props) => {
   const navigation = useNavigation();
   const [datas, setDatas] = useState("");
 
@@ -68,7 +69,8 @@ const PricingScreen = () => {
     // navigation.replace("Home");
   };
 
-  const transitionAnimation = (index) => {
+
+  const transitionAnimation = index => {
     return {
       transform: [
         { perspective: 800 },
@@ -77,41 +79,37 @@ const PricingScreen = () => {
             inputRange: [
               (index - 1) * SCREEN_WIDTH,
               index * SCREEN_WIDTH,
-              (index + 1) * SCREEN_WIDTH,
+              (index + 1) * SCREEN_WIDTH
             ],
-            outputRange: [0.25, 1, 0.25],
-          }),
+            outputRange: [0.25, 1, 0.25]
+          })
         },
         {
           rotateX: xOffset.interpolate({
             inputRange: [
               (index - 1) * SCREEN_WIDTH,
               index * SCREEN_WIDTH,
-              (index + 1) * SCREEN_WIDTH,
+              (index + 1) * SCREEN_WIDTH
             ],
-            outputRange: ["45deg", "0deg", "45deg"],
-          }),
+            outputRange: ["45deg", "0deg", "45deg"]
+          })
         },
         {
           rotateY: xOffset.interpolate({
             inputRange: [
               (index - 1) * SCREEN_WIDTH,
               index * SCREEN_WIDTH,
-              (index + 1) * SCREEN_WIDTH,
+              (index + 1) * SCREEN_WIDTH
             ],
-            outputRange: ["-45deg", "0deg", "45deg"],
-          }),
-        },
-      ],
+            outputRange: ["-45deg", "0deg", "45deg"]
+          })
+        }
+      ]
     };
   };
 
   return (
-    <ImageBackground
-      source={require("../assets/img/layoutBack.png")}
-      resizeMode="cover"
-      style={styles.image}
-    >
+    <View style={styless.scrollPage}>
       <View
         style={{ flexDirection: "row", marginTop: 35, marginHorizontal: 15 }}
       >
@@ -129,20 +127,18 @@ const PricingScreen = () => {
           Pricing
         </Text>
       </View>
-
-      <Animated.ScrollView ttle={16}  onScroll={Animated.event(
-          [{ nativeEvent: { contentOffset: { x: xOffset } } }],
-          { useNativeDriver: true }
-        )} showsHorizontalScrollIndicator={false} horizontal={true} pagingEnabled>
-        {datas ? (
-          <>
-            {datas.map((hit,index) => {
-            {/* console.log(index) */}
-              return (
-                <View style={styless.scrollPage} key={hit._id}>
-                  <Animated.View
-                    style={[styles.screen, transitionAnimation(index)]}
-                  >
+      <View>
+        <ScrollView
+          showsHorizontalScrollIndicator={false}
+          style={{ marginTop: 20 }}
+          horizontal={true}
+        >
+          {datas ? (
+            <>
+              {datas.map((hit) => {
+                 
+                return (
+                  <Animated.View style={[styless.screen, transitionAnimation(0)]} key={hit._id}>
                     <View
                       style={{
                         backgroundColor: "#FE0097",
@@ -259,27 +255,27 @@ const PricingScreen = () => {
                       </TouchableOpacity>
                     </View>
                   </Animated.View>
-                </View>
-              );
-            })}
-          </>
-        ) : (
-          <View style={{ flex: 1, justifyContent: "center" }}>
-            <ActivityIndicator
-              size="large"
-              style={{ marginLeft: 150 }}
-              color="white"
-            />
-          </View>
-        )}
-      </Animated.ScrollView>
+                );
+              })}
+            </>
+          ) : (
+            <View style={{ flex: 1, justifyContent: "center" }}>
+              <ActivityIndicator
+                size="large"
+                style={{ marginLeft: 150 }}
+                color="white"
+              />
+            </View>
+          )}
+        </ScrollView>
 
-      <View style={{ marginHorizontal: 30 }}>
-        <Text style={{ color: "white", textAlign: "center" }}>
-          You Need To Purchase Any Plan {"\n"}First. If You Want To Proceed.
-        </Text>
+        <View style={{ marginHorizontal: 30 }}>
+          <Text style={{ color: "white", textAlign: "center" }}>
+            You Need To Purchase Any Plan {"\n"}First. If You Want To Proceed.
+          </Text>
+        </View>
       </View>
-    </ImageBackground>
+    </View>
   );
 };
 
