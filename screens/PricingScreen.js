@@ -1,11 +1,4 @@
-import {
-  View,
-  Text,
-  TouchableOpacity,
-  ScrollView,
-  ImageBackground,
-  ActivityIndicator,
-} from "react-native";
+import {View,Text,TouchableOpacity,ScrollView,ImageBackground,ActivityIndicator,Animated,Dimensions} from "react-native";
 import React, { useState, useEffect } from "react";
 import styles from "../styles/globalcss";
 import { useNavigation } from "@react-navigation/native";
