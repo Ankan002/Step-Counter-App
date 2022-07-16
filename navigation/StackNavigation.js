@@ -17,6 +17,7 @@ import WithdrawalRequestWindow from "../screens/WithdrawalRequestWindow";
 import DoPayment from "../screens/DoPayment";
 import VerifyPayment from "../screens/VerifyPayment";
 import WaitingForConfirmation from "../screens/WaitingForConfirmation";
+import SelectPaymentMethod from "../screens/SelectPaymentMethod";
 
 
 const Stack = createStackNavigator();
@@ -46,6 +47,7 @@ const StackNavigator = () => {
       <Stack.Screen name="DoPayment" component={DoPayment} />
       <Stack.Screen name="VerifyPayment" component={VerifyPayment} />
       <Stack.Screen name="WaitingForConfirmation" component={WaitingForConfirmation} />
+      <Stack.Screen name="SelectPaymentMethod" component={SelectPaymentMethod} />
     </Stack.Navigator>
   );
 };

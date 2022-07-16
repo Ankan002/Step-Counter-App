@@ -57,5 +57,13 @@ const styles = StyleSheet.create({
    
 
   },
+  QrIcon: {
+    width: 200,
+    height: 160,
+    marginTop:10,
+    alignSelf:"center"
+   
+
+  },
 });
 export default styles;

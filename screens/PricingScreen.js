@@ -51,8 +51,9 @@ const PricingScreen = () => {
       });
   }, []);
 
-  const handleProceed = async () => {
-    navigation.navigate("DoPayment");
+  const handleProceed = async (price) => {
+    // navigation.navigate("DoPayment");
+    navigation.navigate('SelectPaymentMethod',{selectedprice:price});
     // try {
     //   await AsyncStorage.setItem("skipPricing", "skipPricingSection");
     // } catch (e) {
@@ -189,7 +190,7 @@ const PricingScreen = () => {
                       </Text>
                     </View>
                     <TouchableOpacity
-                      onPress={handleProceed}
+                      onPress={()=>handleProceed(hit.PackagePrice)}
                       style={{ alignItems: "center", marginTop: 20 }}
                     >
                       <Text
