@@ -130,14 +130,22 @@ const PricingScreen = () => {
         </Text>
       </View>
 
-      <Animated.ScrollView ttle={16}  onScroll={Animated.event(
+      <Animated.ScrollView
+        ttle={16}
+        onScroll={Animated.event(
           [{ nativeEvent: { contentOffset: { x: xOffset } } }],
           { useNativeDriver: true }
-        )} showsHorizontalScrollIndicator={false} horizontal={true} pagingEnabled>
+        )}
+        showsHorizontalScrollIndicator={false}
+        horizontal={true}
+        pagingEnabled
+      >
         {datas ? (
           <>
-            {datas.map((hit,index) => {
-            {/* console.log(index) */}
+            {datas.map((hit, index) => {
+              {
+                /* console.log(index) */
+              }
               return (
                 <View style={styless.scrollPage} key={hit._id}>
                   <Animated.View
@@ -149,9 +157,9 @@ const PricingScreen = () => {
                         width: "100%",
                         height: "auto",
                         padding: 20,
-                        borderRadius: 10,
-                        borderColor: "white",
-                        borderWidth: 1,
+                        borderRadius: 35,
+                        // borderColor: "white",
+                        // borderWidth: 1,
                       }}
                     >
                       <Text
@@ -160,6 +168,7 @@ const PricingScreen = () => {
                           marginTop: 20,
                           fontSize: 40,
                           fontWeight: "bold",
+                          color: "white",
                         }}
                       >
                         {hit.PackageName}
@@ -169,6 +178,7 @@ const PricingScreen = () => {
                           textAlign: "center",
                           fontSize: 20,
                           fontWeight: "bold",
+                          color: "white",
                         }}
                       >
                         {hit.PackagePrice}
@@ -182,8 +192,8 @@ const PricingScreen = () => {
                           marginTop: 10,
                         }}
                       >
-                        <Text>{"\u2B24"}</Text>
-                        <Text style={{ marginLeft: 10 }}>
+                        <Text style={{ color: "white" }}>{"\u2B24"}</Text>
+                        <Text style={{ marginLeft: 10, color: "white" }}>
                           {hit.EveryDayReward} Every Day
                         </Text>
                       </View>
@@ -195,8 +205,8 @@ const PricingScreen = () => {
                           marginTop: 10,
                         }}
                       >
-                        <Text>{"\u2B24"}</Text>
-                        <Text style={{ marginLeft: 10 }}>
+                        <Text style={{ color: "white" }}>{"\u2B24"}</Text>
+                        <Text style={{ marginLeft: 10, color: "white" }}>
                           Valid For {hit.PackagePeriod}
                         </Text>
                       </View>
@@ -208,8 +218,8 @@ const PricingScreen = () => {
                           marginTop: 10,
                         }}
                       >
-                        <Text>{"\u2B24"}</Text>
-                        <Text style={{ marginLeft: 10 }}>
+                        <Text style={{ color: "white" }}>{"\u2B24"}</Text>
+                        <Text style={{ marginLeft: 10, color: "white" }}>
                           Withdraw Any Time
                         </Text>
                       </View>
@@ -221,8 +231,10 @@ const PricingScreen = () => {
                           marginTop: 10,
                         }}
                       >
-                        <Text>{"\u2B24"}</Text>
-                        <Text style={{ marginLeft: 10 }}>Instant Approval</Text>
+                        <Text style={{ color: "white" }}>{"\u2B24"}</Text>
+                        <Text style={{ marginLeft: 10, color: "white" }}>
+                          Instant Approval
+                        </Text>
                       </View>
 
                       <View
@@ -233,8 +245,8 @@ const PricingScreen = () => {
                           marginTop: 10,
                         }}
                       >
-                        <Text>{"\u2B24"}</Text>
-                        <Text style={{ marginLeft: 10 }}>
+                        <Text style={{ color: "white" }}>{"\u2B24"}</Text>
+                        <Text style={{ marginLeft: 10, color: "white" }}>
                           {hit.StepsGoal} Steps Goal
                         </Text>
                       </View>
@@ -295,7 +307,6 @@ const styless = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     borderRadius: 25,
-    backgroundColor: "white",
   },
   text: {
     fontSize: 45,

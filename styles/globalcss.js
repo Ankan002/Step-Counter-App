@@ -4,7 +4,6 @@ import {
  
   Dimensions
 } from "react-native";
-const SCREEN_WIDTH = Dimensions.get("window").width;
 
 
 const styles = StyleSheet.create({
@@ -74,10 +73,11 @@ const styles = StyleSheet.create({
  
   screen: {
     height: 600,
-    justifyContent: "center",
+    // justifyContent: "center",
+  
     alignItems: "center",
-    borderRadius: 25,
-    backgroundColor: "white"
+    borderRadius: 35,
+    backgroundColor: "#FE0097",
   },
 });
 export default styles;
