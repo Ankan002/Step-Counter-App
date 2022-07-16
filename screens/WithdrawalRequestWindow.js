@@ -5,7 +5,7 @@ import {
   TouchableOpacity,
   ActivityIndicator,
   ScrollView,
-  ImageBackground
+  ImageBackground,
 } from "react-native";
 import React, { useState, useEffect } from "react";
 import Ionicons from "react-native-vector-icons/Ionicons";
@@ -23,6 +23,7 @@ const WithdrawalRequestWindow = () => {
   const [activationCode, setActivationCode] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [message, setMessage] = useState("");
+  const [wallateId, setWallateId] = useState("");
 
   useEffect(() => {
     const getData = async () => {
@@ -61,6 +62,11 @@ const WithdrawalRequestWindow = () => {
   const handleSend = () => {
     console.log("send request");
 
+    if (!wallateId.wallateId || !coinsCount.coinsCount) {
+      return setMessage("Please Enter All The Credentials")
+      
+    }
+
     // console.log(activeuser, coinsCount.coinsCount, activationCode);
     setIsLoading(true);
 
@@ -69,6 +75,7 @@ const WithdrawalRequestWindow = () => {
         userUniqueId: activeuser,
         WithdrawCoins: coinsCount.coinsCount,
         ActivationCode: activationCode,
+        PaymentWallete:wallateId.wallateId
       })
       .then((acc) => {
         console.log("posted request");
@@ -82,119 +89,132 @@ const WithdrawalRequestWindow = () => {
   };
 
   return (
-    <ImageBackground source={require('../assets/img/layoutBack.png')} resizeMode="cover" style={styles.image} >
-
-    <ScrollView >
-      <View
-        style={{
-          flexDirection: "row",
-          marginTop: 35,
-          marginHorizontal: 15,
-        }}
-      >
-        <Ionicons
-          name="chevron-back"
-          style={{ flex: 1, color: "white" }}
-          size={24}
-          color={"white"}
-          onPress={() => {
-            navigation.goBack();
-          }}
-        />
-        <Text
+    <ImageBackground
+      source={require("../assets/img/layoutBack.png")}
+      resizeMode="cover"
+      style={styles.image}
+    >
+      <ScrollView>
+        <View
           style={{
-            flex: 3,
-            color: "white",
-            textAlign: "auto",
-            marginLeft: 30,
-            fontWeight: "bold",
-            fontSize: 20,
+            flexDirection: "row",
+            marginTop: 35,
+            marginHorizontal: 15,
           }}
         >
-          Withdraw Coin
-        </Text>
-      </View>
-
-      {userData ? (
-        <>
+          <Ionicons
+            name="chevron-back"
+            style={{ flex: 1, color: "white" }}
+            size={24}
+            color={"white"}
+            onPress={() => {
+              navigation.goBack();
+            }}
+          />
           <Text
             style={{
+              flex: 3,
               color: "white",
-              marginTop: 30,
-              marginRight: 30,
-              marginLeft: 10,
+              textAlign: "auto",
+              marginLeft: 30,
               fontWeight: "bold",
-              fontSize: 15,
+              fontSize: 20,
             }}
           >
-            To Withdraw Your Coins You Need To Feel Up This Form
+            Withdraw Coin
           </Text>
+        </View>
 
-          <View style={{ marginHorizontal: 20, marginTop: 50 }}>
-            <Text style={{ color: "white", marginLeft: 10, marginTop: 5 }}>
-              Coins Numbers You Want To Withdraw
-            </Text>
-            <TextInput
-              onChangeText={(text) => {
-                setCoinsCount({ coinsCount: text });
-              }}
-              keyboardType="number-pad"
-              style={styles.input}
-            />
-
+        {userData ? (
+          <>
             <Text
               style={{
-                color: "#00DCFF",
-                textAlign: "center",
-                marginTop: 10,
+                color: "white",
+                marginTop: 30,
+                marginRight: 30,
+                marginLeft: 10,
                 fontWeight: "bold",
+                fontSize: 15,
               }}
             >
-              {message}
+              To Withdraw Your Coins You Need To Feel Up This Form
             </Text>
 
-            <View style={{ marginTop: 15, marginBottom: 20 }}>
-              {isLoading ? (
-                <Text
-                  style={{
-                    backgroundColor: "#00DCFF",
-                    textAlign: "center",
-                    marginHorizontal: 80,
-                    padding: 10,
-                    borderRadius: 10,
-                  }}
-                >
-                  <ActivityIndicator color="white" />
-                </Text>
-              ) : (
-                <>
-                  <TouchableOpacity onPress={handleSend}>
-                    <Text
-                      style={{
-                        backgroundColor: "#FE0097",
-                        textAlign: "center",
-                        marginHorizontal: 80,
-                        padding: 10,
-                        borderRadius: 10,
-                        color:"white"
-                      }}
-                    >
-                      Send Requests
-                    </Text>
-                  </TouchableOpacity>
-                </>
-              )}
+            <View style={{ marginHorizontal: 20, marginTop: 50 }}>
+              <Text style={{ color: "white", marginLeft: 10, marginTop: 5 }}>
+                Coins Numbers You Want To Withdraw
+              </Text>
+              <TextInput
+                onChangeText={(text) => {
+                  setCoinsCount({ coinsCount: text });
+                }}
+                keyboardType="number-pad"
+                style={styles.input}
+              />
+              <Text style={{ color: "white", marginLeft: 10, marginTop: 10 }}>
+                Your Valid Wallate ID
+              </Text>
+              <TextInput
+                onChangeText={(text) => {
+                  setWallateId({ wallateId: text });
+                }}
+                keyboardType="number-pad"
+                style={styles.input}
+              />
+
+              <Text
+                style={{
+                  color: "#00DCFF",
+                  textAlign: "center",
+                  marginTop: 10,
+                  fontWeight: "bold",
+                }}
+              >
+                {message}
+              </Text>
+
+              <View style={{ marginTop: 15, marginBottom: 20 }}>
+                {isLoading ? (
+                  <Text
+                    style={{
+                      backgroundColor: "#00DCFF",
+                      textAlign: "center",
+                      marginHorizontal: 80,
+                      padding: 10,
+                      borderRadius: 10,
+                    }}
+                  >
+                    <ActivityIndicator color="white" />
+                  </Text>
+                ) : (
+                  <>
+                    <TouchableOpacity onPress={handleSend}>
+                      <Text
+                        style={{
+                          backgroundColor: "#FE0097",
+                          textAlign: "center",
+                          marginHorizontal: 80,
+                          padding: 10,
+                          borderRadius: 10,
+                          color: "white",
+                        }}
+                      >
+                        Send Requests
+                      </Text>
+                    </TouchableOpacity>
+                  </>
+                )}
+              </View>
             </View>
-          </View>
+            
 
-          <LastRequests userId={activeuser} />
-        </>
-      ) : (
-        <></>
-      )}
-    </ScrollView>
+            <LastRequests userId={activeuser} />
+          </>
+        ) : (
+          <></>
+        )}
+      </ScrollView>
     </ImageBackground>
-
   );
 };
 

@@ -1,4 +1,4 @@
-import { createStackNavigator } from "@react-navigation/stack";
+import { createStackNavigator ,CardStyleInterpolators} from "@react-navigation/stack";
 import Introslider from "../components/Introslider";
 import ActivateAccount from "../screens/ActivateAccount";
 import EnterOtp from "../screens/EnterOtp";
@@ -30,7 +30,8 @@ const StackNavigator = () => {
   return (
     <Stack.Navigator
       initialRouteName={"Introslider"}
-      screenOptions={{ headerShown: false }}
+      screenOptions={{ headerShown: false,cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS }}
+
     >
       <Stack.Screen name="Introslider" component={Introslider} />
       <Stack.Screen name="Login" component={LoginScreen} />
