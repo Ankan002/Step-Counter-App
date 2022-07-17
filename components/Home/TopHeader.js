@@ -43,7 +43,7 @@ const TopHeader = () => {
         flexDirection: "row",
         backgroundColor: "#1E1D1D",
         padding: 10,
-        paddingTop: 20,
+        paddingTop: 40,
       }}
     >
       <Text

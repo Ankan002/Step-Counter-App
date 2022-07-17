@@ -208,7 +208,7 @@ const WithdrawalRequestWindow = () => {
             </View>
             
 
-            <LastRequests userId={activeuser} />
+            {/* <LastRequests userId={activeuser} /> */}
           </>
         ) : (
           <></>

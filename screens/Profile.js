@@ -4,7 +4,8 @@ import {
   ScrollView,
   TextInput,
   ActivityIndicator,
-  ImageBackground
+  ImageBackground,
+  TouchableOpacity,
 } from "react-native";
 import React, { useState, useEffect } from "react";
 import Ionicons from "react-native-vector-icons/Ionicons";
@@ -12,7 +13,6 @@ import styles from "../styles/globalcss";
 import { useNavigation } from "@react-navigation/native";
 import { Center, Image } from "native-base";
 import MaterialIcons from "react-native-vector-icons/MaterialIcons";
-import { TouchableOpacity } from "react-native-gesture-handler";
 import EditProfile from "../components/Profile/EditProfile";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import axios from "axios";
@@ -127,400 +127,438 @@ const Profile = () => {
   };
 
   return (
-     <ImageBackground source={require('../assets/img/layoutBack.png')} resizeMode="cover" style={styles.image} >
-    <ScrollView>
-
-      {showEdit ? (
-        <>
-          <View
-            style={{
-              flexDirection: "row",
-              marginTop: 35,
-              marginHorizontal: 15,
-            }}
-          >
-            <Ionicons
-              name="chevron-back"
-              style={{ flex: 1, color: "white" }}
-              size={24}
-              color={"white"}
-              onPress={() => setShowEdit(false)}
-            />
-            <Text
+    <ImageBackground
+      source={require("../assets/img/layoutBack.png")}
+      resizeMode="cover"
+      style={styles.image}
+    >
+      <ScrollView>
+        {showEdit ? (
+          <>
+            <View
               style={{
-                flex: 3,
-                color: "white",
-                textAlign: "auto",
-                marginLeft: 30,
-                fontWeight: "bold",
-                fontSize: 20,
+                flexDirection: "row",
+                marginTop: 35,
+                marginHorizontal: 15,
               }}
             >
-              Edit Profile
-            </Text>
-          </View>
-
-          <View>
-            <View style={{ marginTop: 20, marginHorizontal: 40 }}>
-              <Text style={{ color: "white", marginLeft: 10, marginTop: 5 }}>
-                Name
-              </Text>
-              <TextInput
-                defaultValue={userData[0].Name}
-                keyboardType="email-address"
-                style={styles.input}
-                onChangeText={(text) => {
-                  setName({ name: text });
-                }}
+              <Ionicons
+                name="chevron-back"
+                style={{ flex: 1, color: "white" }}
+                size={24}
+                color={"white"}
+                onPress={() => setShowEdit(false)}
               />
-
-              <Text style={{ color: "white", marginLeft: 10, marginTop: 5 }}>
-                Email
-              </Text>
-              <TextInput
-                keyboardType="default"
-                maxLength={25}
-                style={styles.input}
-                defaultValue={userData[0].email}
-                onChangeText={(text) => {
-                  setEmail({ email: text });
-                }}
-              />
-
-              <Text style={{ color: "white", marginLeft: 10, marginTop: 5 }}>
-                D.O.B
-              </Text>
-              <TextInput
-                keyboardType="default"
-                maxLength={25}
-                style={styles.input}
-                defaultValue={userData[0].DOB}
-                onChangeText={(text) => {
-                  setDob({ dob: text });
-                }}
-              />
-              <Text style={{ color: "white", marginLeft: 10, marginTop: 5 }}>
-                Age
-              </Text>
-              <TextInput
-                keyboardType="default"
-                maxLength={25}
-                style={styles.input}
-                defaultValue={userData[0].Age}
-                onChangeText={(text) => {
-                  setAge({ age: text });
-                }}
-              />
-
-              <Text style={{ color: "white", marginLeft: 10, marginTop: 5 }}>
-                Height
-              </Text>
-              <TextInput
-                keyboardType="default"
-                maxLength={25}
-                style={styles.input}
-                defaultValue={userData[0].Height}
-                onChangeText={(text) => {
-                  setHeight({ height: text });
-                }}
-              />
-
-              <Text style={{ color: "white", marginLeft: 10, marginTop: 5 }}>
-                Weight
-              </Text>
-              <TextInput
-                keyboardType="default"
-                maxLength={25}
-                style={styles.input}
-                defaultValue={userData[0].Weight}
-                onChangeText={(text) => {
-                  setWeight({ weight: text });
-                }}
-              />
-
-              <Text style={{ color: "white", marginLeft: 10, marginTop: 5 }}>
-                Goal
-              </Text>
-              <TextInput
-                keyboardType="default"
-                maxLength={25}
-                style={styles.input}
-                defaultValue={userData[0].Goal}
-                onChangeText={(text) => {
-                  setGoal({ goal: text });
-                }}
-              />
-
-              <View
+              <Text
                 style={{
-                  marginHorizontal: 40,
-                  marginTop: 20,
-                  marginBottom: 20,
+                  flex: 3,
+                  color: "white",
+                  textAlign: "auto",
+                  marginLeft: 30,
+                  fontWeight: "bold",
+                  fontSize: 20,
                 }}
               >
-                <TouchableOpacity onPress={handleSave}>
-                  {/* <TouchableOpacity onPress={() => setShowEdit(false)}> */}
+                Edit Profile
+              </Text>
+            </View>
+
+            <View>
+              <View style={{ marginTop: 20, marginHorizontal: 40 }}>
+                <Text style={{ color: "white", marginLeft: 10, marginTop: 5 }}>
+                  Name
+                </Text>
+                <TextInput
+                  defaultValue={userData[0].Name}
+                  keyboardType="email-address"
+                  style={styles.input}
+                  onChangeText={(text) => {
+                    setName({ name: text });
+                  }}
+                />
+
+                <Text style={{ color: "white", marginLeft: 10, marginTop: 5 }}>
+                  Email
+                </Text>
+                <TextInput
+                  keyboardType="default"
+                  maxLength={25}
+                  style={styles.input}
+                  defaultValue={userData[0].email}
+                  onChangeText={(text) => {
+                    setEmail({ email: text });
+                  }}
+                />
+
+                <Text style={{ color: "white", marginLeft: 10, marginTop: 5 }}>
+                  D.O.B
+                </Text>
+                <TextInput
+                  keyboardType="default"
+                  maxLength={25}
+                  style={styles.input}
+                  defaultValue={userData[0].DOB}
+                  onChangeText={(text) => {
+                    setDob({ dob: text });
+                  }}
+                />
+                <Text style={{ color: "white", marginLeft: 10, marginTop: 5 }}>
+                  Age
+                </Text>
+                <TextInput
+                  keyboardType="default"
+                  maxLength={25}
+                  style={styles.input}
+                  defaultValue={userData[0].Age}
+                  onChangeText={(text) => {
+                    setAge({ age: text });
+                  }}
+                />
+
+                <Text style={{ color: "white", marginLeft: 10, marginTop: 5 }}>
+                  Height
+                </Text>
+                <TextInput
+                  keyboardType="default"
+                  maxLength={25}
+                  style={styles.input}
+                  defaultValue={userData[0].Height}
+                  onChangeText={(text) => {
+                    setHeight({ height: text });
+                  }}
+                />
+
+                <Text style={{ color: "white", marginLeft: 10, marginTop: 5 }}>
+                  Weight
+                </Text>
+                <TextInput
+                  keyboardType="default"
+                  maxLength={25}
+                  style={styles.input}
+                  defaultValue={userData[0].Weight}
+                  onChangeText={(text) => {
+                    setWeight({ weight: text });
+                  }}
+                />
+
+                <Text style={{ color: "white", marginLeft: 10, marginTop: 5 }}>
+                  Goal
+                </Text>
+                <TextInput
+                  keyboardType="default"
+                  maxLength={25}
+                  style={styles.input}
+                  defaultValue={userData[0].Goal}
+                  onChangeText={(text) => {
+                    setGoal({ goal: text });
+                  }}
+                />
+
+                <View
+                  style={{
+                    marginHorizontal: 40,
+                    marginTop: 20,
+                    marginBottom: 20,
+                  }}
+                >
+                  <TouchableOpacity onPress={handleSave}>
+                    {/* <TouchableOpacity onPress={() => setShowEdit(false)}> */}
+                    <Text
+                      style={{
+                        color: "white",
+                        textAlign: "center",
+                        backgroundColor: "#FE0097",
+                        padding: 10,
+                        borderRadius: 10,
+                        fontWeight: "bold",
+                      }}
+                    >
+                      Save
+                    </Text>
+                  </TouchableOpacity>
+                </View>
+                <TouchableOpacity onPress={() => setShowEdit(false)}>
+                  <Text
+                    style={{
+                      color: "red",
+                      textAlign: "center",
+                      marginBottom: 20,
+                      textDecorationColor: "red",
+                      textDecorationLine: "underline",
+                    }}
+                  >
+                    Cancel
+                  </Text>
+                </TouchableOpacity>
+              </View>
+            </View>
+          </>
+        ) : (
+          <>
+            {userData ? (
+              <>
+                <View
+                  style={{
+                    flexDirection: "row",
+                    marginTop: 35,
+                    marginHorizontal: 15,
+                  }}
+                >
+                  <Ionicons
+                    name="chevron-back"
+                    style={{ flex: 1, color: "white" }}
+                    size={24}
+                    color={"white"}
+                    onPress={() => {
+                      navigation.goBack();
+                    }}
+                  />
+                  <Text
+                    style={{
+                      flex: 2,
+                      color: "white",
+                      textAlign: "auto",
+                      marginLeft: 30,
+                      fontWeight: "bold",
+                      fontSize: 20,
+                    }}
+                  >
+                    Profile
+                  </Text>
+                </View>
+
+                <View style={{ marginTop: 20 }}>
+                  <Center style={{ flexDirection: "row" }}>
+                    <Image
+                      size={100}
+                      resizeMode={"contain"}
+                      borderRadius={50}
+                      source={require("../assets/img/profileicon.png")}
+                      alt="Alternate Text"
+                    />
+                  </Center>
                   <Text
                     style={{
                       color: "white",
                       textAlign: "center",
-                      backgroundColor: "#FE0097",
-                      padding: 10,
-                      borderRadius: 10,
-                      fontWeight: "bold",
-                    }}
-                  >
-                    Save
-                  </Text>
-                </TouchableOpacity>
-              </View>
-              <TouchableOpacity onPress={() => setShowEdit(false)}>
-                <Text
-                  style={{
-                    color: "red",
-                    textAlign: "center",
-                    marginBottom: 20,
-                    textDecorationColor: "red",
-                    textDecorationLine: "underline",
-                  }}
-                >
-                  Cancel
-                </Text>
-              </TouchableOpacity>
-            </View>
-          </View>
-        </>
-      ) : (
-        <>
-          {userData ? (
-            <>
-              <View
-                style={{
-                  flexDirection: "row",
-                  marginTop: 35,
-                  marginHorizontal: 15,
-                }}
-              >
-                <Ionicons
-                  name="chevron-back"
-                  style={{ flex: 1, color: "white" }}
-                  size={24}
-                  color={"white"}
-                  onPress={() => {
-                    navigation.goBack();
-                  }}
-                />
-                <Text
-                  style={{
-                    flex: 2,
-                    color: "white",
-                    textAlign: "auto",
-                    marginLeft: 30,
-                    fontWeight: "bold",
-                    fontSize: 20,
-                  }}
-                >
-                  Profile
-                </Text>
-              </View>
-
-              <View style={{ marginTop: 20 }}>
-                <Center style={{ flexDirection: "row" }}>
-                  <Image
-                    size={100}
-                    resizeMode={"contain"}
-                    borderRadius={50}
-                    source={require('../assets/img/profileicon.png')}
-                    alt="Alternate Text"
-                  />
-                </Center>
-                <Text
-                  style={{
-                    color: "white",
-                    textAlign: "center",
-                    marginTop: 10,
-                    fontSize: 15,
-                    fontWeight: "bold",
-                  }}
-                >
-                  {userData[0].username}
-                  <TouchableOpacity onPress={() => setShowEdit(true)}>
-                    <Ionicons name="pencil" size={15} color="#FE0097" />
-                  </TouchableOpacity>
-                </Text>
-              </View>
-
-              <View style={{ flexDirection: "row", marginHorizontal: 30 }}>
-                <View
-                  style={{
-                    flex: 2,
-                    alignItems: "center",
-                    backgroundColor: "#121212",
-                    margin: 10,
-                    borderRadius: 10,
-                    padding: 5,
-                  }}
-                >
-                  <Text style={{ color: "white", fontSize: 20 }}>Wallet</Text>
-                  <Text
-                    style={{ color: "#FE0097", fontSize: 18, marginTop: 5 }}
-                  >
-                    {userData[0].wallate}
-                  </Text>
-                </View>
-                <View
-                  style={{
-                    flex: 2,
-                    alignItems: "center",
-                    backgroundColor: "#121212",
-                    margin: 10,
-                    borderRadius: 10,
-                    padding: 5,
-                  }}
-                >
-                  <Text style={{ color: "white", fontSize: 20 }}>Goal</Text>
-                  <Text
-                    style={{ color: "#FE0097", fontSize: 18, marginTop: 5 }}
-                  >
-                    {userData[0].Goal}
-                  </Text>
-                </View>
-              </View>
-
-              <View style={{ marginHorizontal: 20, marginTop: 20 }}>
-                <Text
-                  style={{ color: "white", fontWeight: "bold", fontSize: 18 }}
-                >
-                  Total Withdrawal
-                </Text>
-              </View>
-
-              <View>
-                <View
-                  style={{
-                    marginHorizontal: 20,
-                    marginTop: 20,
-                    flexDirection: "row",
-                  }}
-                >
-                  <Text
-                    style={{
-                      color: "#FE0097",
-                      flex: 2,
-                      textAlign: "center",
-                      backgroundColor: "#121212",
-                      margin: 10,
-                      padding: 20,
-                      borderRadius: 10,
-                      fontWeight: "bold",
-                    }}
-                  >
-                    0 <Text style={{ color: "white" }}> Withdrawal</Text>
-                  </Text>
-                  <Text
-                    style={{
-                      color: "#FE0097",
-                      flex: 2,
-                      textAlign: "center",
-                      backgroundColor: "#121212",
-                      margin: 10,
-                      padding: 20,
-                      borderRadius: 10,
-                      fontWeight: "bold",
-                    }}
-                  >
-                    0 <Text style={{ color: "white" }}> Approval</Text>
-                  </Text>
-                </View>
-              </View>
-
-              <View style={{ marginHorizontal: 20, marginTop: 20 }}>
-                <Text
-                  style={{ color: "white", fontWeight: "bold", fontSize: 18 }}
-                >
-                  Running Package
-                </Text>
-              </View>
-
-              <View>
-                <View
-                  style={{
-                    marginHorizontal: 20,
-                    marginTop: 20,
-                    flexDirection: "row",
-                  }}
-                >
-                  <Text
-                    style={{
-                      color: "#FE0097",
-                      flex: 2,
-                      textAlign: "center",
-                      backgroundColor: "#121212",
-                      margin: 10,
-                      padding: 20,
-                      borderRadius: 10,
-                      fontWeight: "bold",
-                    }}
-                  >
-                    Walk<Text style={{ color: "white" }}>{"\n"}200$</Text>
-                  </Text>
-                  <Text
-                    style={{
-                      color: "#FE0097",
-                      flex: 2,
-                      textAlign: "center",
-                      backgroundColor: "#121212",
-                      margin: 10,
-                      padding: 20,
-                      borderRadius: 10,
-                      fontWeight: "bold",
-                    }}
-                  >
-                    Renewal On
-                    <Text style={{ color: "white" }}>{"\n"}15/03/2022</Text>
-                  </Text>
-                </View>
-              </View>
-
-
-              <ReferalCode activeUserData={userData} currentUser={activeuser} />
-
-              <View
-                style={{
-                  marginHorizontal: 100,
-                  marginBottom: 50,
-                  marginTop: 50,
-                }}
-              >
-                <TouchableOpacity onPress={handleLogout}>
-                  <Text
-                    style={{
-                      color: "#FE0097",
-                      textAlign: "center",
-                      backgroundColor: "#121212",
-                      padding: 10,
-                      fontWeight: "bold",
+                      marginTop: 10,
                       fontSize: 15,
-                      borderRadius: 15,
+                      fontWeight: "bold",
                     }}
                   >
-                    Logout{" "}
-                    <MaterialIcons name="logout" size={10} color="#FE0097" />
+                    {userData[0].username}
+                    <TouchableOpacity onPress={() => setShowEdit(true)}>
+                      <Ionicons name="pencil" size={15} color="#FE0097" />
+                    </TouchableOpacity>
                   </Text>
+                </View>
+
+                <View style={{ flexDirection: "row", marginHorizontal: 30 }}>
+                  <View
+                    style={{
+                      flex: 2,
+                      alignItems: "center",
+                      backgroundColor: "#121212",
+                      margin: 10,
+                      borderRadius: 10,
+                      padding: 5,
+                    }}
+                  >
+                    <Text style={{ color: "white", fontSize: 20 }}>Wallet</Text>
+                    <Text
+                      style={{ color: "#FE0097", fontSize: 18, marginTop: 5 }}
+                    >
+                      {userData[0].wallate}
+                    </Text>
+                  </View>
+                  <View
+                    style={{
+                      flex: 2,
+                      alignItems: "center",
+                      backgroundColor: "#121212",
+                      margin: 10,
+                      borderRadius: 10,
+                      padding: 5,
+                    }}
+                  >
+                    <Text style={{ color: "white", fontSize: 20 }}>Goal</Text>
+                    <Text
+                      style={{ color: "#FE0097", fontSize: 18, marginTop: 5 }}
+                    >
+                      {userData[0].Goal}
+                    </Text>
+                  </View>
+                </View>
+
+                <View style={{ marginHorizontal: 20, marginTop: 20 }}>
+                  <Text
+                    style={{ color: "white", fontWeight: "bold", fontSize: 18 }}
+                  >
+                    Total Withdrawal
+                  </Text>
+                </View>
+
+                <View>
+                  <View
+                    style={{
+                      marginHorizontal: 20,
+                      marginTop: 20,
+                      flexDirection: "row",
+                    }}
+                  >
+                    <Text
+                      style={{
+                        color: "#FE0097",
+                        flex: 2,
+                        textAlign: "center",
+                        backgroundColor: "#121212",
+                        margin: 10,
+                        padding: 20,
+                        borderRadius: 10,
+                        fontWeight: "bold",
+                      }}
+                    >
+                      0 <Text style={{ color: "white" }}> Withdrawal</Text>
+                    </Text>
+                    <Text
+                      style={{
+                        color: "#FE0097",
+                        flex: 2,
+                        textAlign: "center",
+                        backgroundColor: "#121212",
+                        margin: 10,
+                        padding: 20,
+                        borderRadius: 10,
+                        fontWeight: "bold",
+                      }}
+                    >
+                      0 <Text style={{ color: "white" }}> Approval</Text>
+                    </Text>
+                  </View>
+                </View>
+
+                <View style={{ marginHorizontal: 20, marginTop: 20 }}>
+                  <Text
+                    style={{ color: "white", fontWeight: "bold", fontSize: 18 }}
+                  >
+                    Running Package
+                  </Text>
+                </View>
+
+                <View>
+                  <View
+                    style={{
+                      marginHorizontal: 20,
+                      marginTop: 20,
+                      flexDirection: "row",
+                    }}
+                  >
+                    <Text
+                      style={{
+                        color: "#FE0097",
+                        flex: 2,
+                        textAlign: "center",
+                        backgroundColor: "#121212",
+                        margin: 10,
+                        padding: 20,
+                        borderRadius: 10,
+                        fontWeight: "bold",
+                      }}
+                    >
+                      Walk<Text style={{ color: "white" }}>{"\n"}200$</Text>
+                    </Text>
+                    <Text
+                      style={{
+                        color: "#FE0097",
+                        flex: 2,
+                        textAlign: "center",
+                        backgroundColor: "#121212",
+                        margin: 10,
+                        padding: 20,
+                        borderRadius: 10,
+                        fontWeight: "bold",
+                      }}
+                    >
+                      Renewal On
+                      <Text style={{ color: "white" }}>{"\n"}15/03/2022</Text>
+                    </Text>
+                  </View>
+                </View>
+
+                {/* Transaction History */}
+
+                <TouchableOpacity
+                  onPress={() => navigation.navigate("TransactionHistory")}
+                >
+                  <View>
+                    <View
+                      style={{
+                        marginHorizontal: 20,
+                        marginTop: 20,
+                        flexDirection: "row",
+                      }}
+                    >
+                      <Text
+                        style={{
+                          color: "white",
+                          flex: 2,
+                          textAlign: "center",
+                          backgroundColor: "#121212",
+                          margin: 10,
+                          padding: 20,
+                          borderRadius: 10,
+                          fontWeight: "bold",
+                        }}
+                      >
+                        Transaction <Text
+                      style={{ color: "#FE0097" }}
+                    > History</Text>
+                      </Text>
+                    </View>
+                  </View>
                 </TouchableOpacity>
+
+                {/* Transaction History Ends Here  */}
+
+                <ReferalCode
+                  activeUserData={userData}
+                  currentUser={activeuser}
+                />
+
+                <View
+                  style={{
+                    marginHorizontal: 100,
+                    marginBottom: 50,
+                    marginTop: 50,
+                  }}
+                >
+                  <TouchableOpacity onPress={handleLogout}>
+                    <Text
+                      style={{
+                        color: "#FE0097",
+                        textAlign: "center",
+                        backgroundColor: "#121212",
+                        padding: 10,
+                        fontWeight: "bold",
+                        fontSize: 15,
+                        borderRadius: 15,
+                      }}
+                    >
+                      Logout{" "}
+                      <MaterialIcons name="logout" size={10} color="#FE0097" />
+                    </Text>
+                  </TouchableOpacity>
+                </View>
+              </>
+            ) : (
+              <View style={{ marginTop: "70%" }}>
+                <ActivityIndicator size="large" color="white" />
               </View>
-            </>
-          ) : (
-            <View style={{ marginTop: "70%" }}>
-              <ActivityIndicator size="large" color="white" />
-            </View>
-          )}
-        </>
-      )}
-
-    </ScrollView>
+            )}
+          </>
+        )}
+      </ScrollView>
     </ImageBackground>
-
   );
 };
 
