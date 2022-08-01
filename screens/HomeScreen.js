@@ -5,6 +5,7 @@ import {
   Modal,
   TouchableOpacity,
   Image,
+  Platform
 } from "react-native";
 import React, { useState, useEffect } from "react";
 import styles from "../styles/globalcss";
@@ -15,6 +16,8 @@ import CoinsEarned from "../components/Home/CoinsEarned";
 import Past7Days from "../components/Home/Past7Days";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { Pedometer } from "expo-sensors";
+import { usePedometer } from "@use-expo/sensors";
+import { check, request, PERMISSIONS, RESULTS } from "react-native-permissions";
 import { Center } from "native-base";
 import axios from "axios";
 import WallateInfo from "../components/Dashboard/WallateInfo";
@@ -25,6 +28,7 @@ import { useNavigation } from "@react-navigation/native";
 const HomeScreen = () => {
   const [pedometerAvalibility, setPedometerAvalibility] = useState("");
   const [stepcounter, setStepcounter] = useState(0);
+  const [data, isAvailable] = usePedometer();
   const [showvalue, setShowvalue] = useState();
   const [userData, setUserData] = useState();
   const [goal, setGoal] = useState();
@@ -33,10 +37,16 @@ const HomeScreen = () => {
   const navigation = useNavigation();
 
   useEffect(() => {
+
+    if(isAvailable){
+      subscribe();
+    }
+  }, [isAvailable]);
+
+  useEffect(() => {
     ReachedAtHomeScreen();
 
     // removeAll()
-    subscribe();
 
     const getData = async () => {
       try {
@@ -98,18 +108,30 @@ const HomeScreen = () => {
     getUserData();
   }, []);
 
-  const subscribe = () => {
-    const subscription = Pedometer.watchStepCount((res) => {
+  const subscribe = async() => {
+    if(Platform.Version >= 29){
+      const permissionStatus = await check(PERMISSIONS.ANDROID.ACTIVITY_RECOGNITION);
+
+      if(permissionStatus !== RESULTS.GRANTED){
+        const Result = await request(PERMISSIONS.ANDROID.ACTIVITY_RECOGNITION);
+
+        if(Result !== RESULTS.GRANTED) {
+          Alert.alert("Destruction....");
+          return;
+        }
+      }
+    }
+    else{
+      const permissionStatus = (await Pedometer.getPermissionsAsync()).granted;
+
+      if(!permissionStatus){
+        await Pedometer.requestPermissionsAsync();
+      }
+    }
+
+    Pedometer.watchStepCount((res) => {
       setStepcounter(res.steps);
     });
-
-    Pedometer.isAvailableAsync()
-      .then((acc) => {
-        setPedometerAvalibility(acc);
-      })
-      .catch((err) => {
-        setPedometerAvalibility(err);
-      });
   };
 
   const removeAll = async () => {
